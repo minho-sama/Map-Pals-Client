@@ -1,1 +1,0 @@
-mivel a map meg a sidebar szorosan kapcsolódnak-> csinálni majd egy közös componentet (map+sidebar) ahol majd közösen osztoznak stateken!!!

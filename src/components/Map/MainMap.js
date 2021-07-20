@@ -3,7 +3,8 @@ import { MapContainer} from 'react-leaflet';
 import MapContent from './MapContent'
 import GeoSearch from './GeoSearch/GeoSearch'
 
-function MainMap() {
+function MainMap({testData, setCurrentPlace}) {
+
   const [latitude, setLatitude] = useState(51.505);
   const [longitude, setLongitude] = useState(-0.09);
 
@@ -27,7 +28,7 @@ function MainMap() {
         scrollWheelZoom={true}
         className="w-full h-full"
       >
-        <MapContent lat={latitude} lng={longitude}/>
+        <MapContent lat={latitude} lng={longitude} testData = {testData} setCurrentPlace={setCurrentPlace}/>
         <GeoSearch/>
 
       </MapContainer>

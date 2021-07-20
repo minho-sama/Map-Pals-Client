@@ -4,7 +4,7 @@ import Dashboard from './Dashboard/DashBoard'
 
 function App() {
   return (
-    <div className="h-screen flex flex-col bg-red-800">
+    <div className="h-screen flex flex-col font-custom">
 
       <Navbar/>
 

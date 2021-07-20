@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react';
 import { TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 
-function MapContent({lat, lng}) {
+function MapContent({lat, lng, testData, setCurrentPlace}) {
     const map = useMap();
   
     useEffect(() => {
@@ -21,6 +21,24 @@ function MapContent({lat, lng}) {
             Start adding markers of your favorite places!
           </Popup>
         </Marker>
+
+        { //marker külön componentbe!!!
+          testData.map((place) => {
+            return (
+              <Marker
+                position = {[place.coords[0], place.coords[1]]} 
+                eventHandlers={{
+                  click: (e) => {
+                    setCurrentPlace(place)
+                  },
+                }}>
+                <Popup>
+                  {place.name}
+                </Popup>
+              </Marker>
+            )
+          })
+        }
       </>
     );
   }
