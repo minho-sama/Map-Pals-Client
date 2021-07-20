@@ -1,7 +1,6 @@
-import Map from './Map/Map';
 import Footer from './Footer/Footer'
 import Navbar from './Navbar/Navbar'
-import Sidebar from './Sidebar/Sidebar'
+import Dashboard from './Dashboard/DashBoard'
 
 function App() {
   return (
@@ -9,13 +8,7 @@ function App() {
 
       <Navbar/>
 
-      <article 
-        className="flex-grow md:flex">
-
-        <Sidebar/>
-
-        <Map />
-      </article>
+      <Dashboard/>
 
       <Footer/>
     </div>

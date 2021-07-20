@@ -1,27 +1,40 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useState, useEffect} from 'react';
+import { MapContainer} from 'react-leaflet';
+import MapContent from './MapContent'
+import GeoSearch from './GeoSearch/GeoSearch'
 
-function Map() {
+function MainMap() {
+  const [latitude, setLatitude] = useState(51.505);
+  const [longitude, setLongitude] = useState(-0.09);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setLatitude(latitude);
+        setLongitude(longitude);
+      },
+      (err) => console.log(err)
+    );
+  }, []);
+
+
   return (
-    <section className = 'w-full h-4/5 md:w-3/4 md:h-full '>
+    <section className="w-full h-4/5 md:w-3/4 md:h-full ">
       <MapContainer
-        center={[51.505, -0.09]}
+        center={[latitude, longitude]}
         zoom={15}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
         className="w-full h-full"
       >
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={[51.505, -0.09]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
+        <MapContent lat={latitude} lng={longitude}/>
+        <GeoSearch/>
+
       </MapContainer>
     </section>
   );
 }
 
-export default Map;
+
+
+export default MainMap;
