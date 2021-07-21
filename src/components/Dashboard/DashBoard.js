@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import MainMap from '../Map/MainMap';
 import Sidebar from '../Sidebar/Sidebar';
 
-function DashBoard() { 
+export const PlaceContext = React.createContext()
 
+function Dashboard() { 
   const [currentPlace, setCurrentPlace] = useState({}) 
 
     //ITT LESZ EGY CSOMÓ KÖZÖS STATE!
@@ -20,18 +21,19 @@ function DashBoard() {
       },
       {
         "name": "pokegym",
-        "coords": [47.46127, 19.1516761],
+        "coords": [47.45427, 19.1516761],
         "likes": 2
       }
     ]
 
   return (
       <article className="flex-grow md:flex">
-        <Sidebar testData = {testData} currentPlace = {currentPlace}/>
-
-        <MainMap testData = {testData} setCurrentPlace={setCurrentPlace}/>
+        <PlaceContext.Provider value = {{currentPlace,setCurrentPlace, testData}}>
+          <Sidebar/>
+          <MainMap/>
+        </PlaceContext.Provider> 
       </article>
   );
 }
 
-export default DashBoard;
+export default Dashboard

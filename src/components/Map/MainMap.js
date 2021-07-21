@@ -3,8 +3,9 @@ import { MapContainer} from 'react-leaflet';
 import MapContent from './MapContent'
 import GeoSearch from './GeoSearch/GeoSearch'
 
-function MainMap({testData, setCurrentPlace}) {
+function MainMap() {
 
+  //default location is London
   const [latitude, setLatitude] = useState(51.505);
   const [longitude, setLongitude] = useState(-0.09);
 
@@ -24,11 +25,11 @@ function MainMap({testData, setCurrentPlace}) {
     <section className="w-full h-4/5 md:w-3/4 md:h-full ">
       <MapContainer
         center={[latitude, longitude]}
-        zoom={15}
+        zoom={13}
         scrollWheelZoom={true}
         className="w-full h-full"
       >
-        <MapContent lat={latitude} lng={longitude} testData = {testData} setCurrentPlace={setCurrentPlace}/>
+        <MapContent lat={latitude} lng={longitude}/>
         <GeoSearch/>
 
       </MapContainer>
