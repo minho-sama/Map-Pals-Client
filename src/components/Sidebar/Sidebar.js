@@ -4,7 +4,7 @@ import {PlaceContext} from '../Dashboard/DashBoard'
 function Sidebar() {
   const {currentPlace}= useContext(PlaceContext)
   return (
-    <div className="w-full h-1/5 md:w-1/4 md:h-full p-2">
+    <div className="w-full h-1/5 shadow-inner md:w-1/4 md:h-full p-2">
 
       <h2>sidebar stuff</h2>
         {

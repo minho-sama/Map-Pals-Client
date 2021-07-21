@@ -5,3 +5,11 @@
 .navbar li:not(:first-child){
     @apply hover:text-gray-200 transition-colors
 }
+
+.form-err-msg{
+    @apply text-red-500 text-sm
+}
+
+.form-input-field{
+    @apply rounded-sm border-2 border-gray-900
+}

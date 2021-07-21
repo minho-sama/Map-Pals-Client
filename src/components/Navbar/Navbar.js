@@ -1,9 +1,10 @@
 import React from 'react';
 import {FaMapMarked} from 'react-icons/fa'
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <nav className="bg-fb-blue text-white p-2 flex items-center">
+    <nav className="bg-fb-blue-light text-white p-2 flex items-center">
       <a href = "/" className="text-2xl">MapPals</a>
       <FaMapMarked className = "mx-2 w-4"/>
       
@@ -13,7 +14,7 @@ function Navbar() {
           <a href="/signin/demo">Demo</a>
         </li>
         <li>
-          <a href="/login">Log in</a>
+          <Link to = '/login'>Log in</Link>
         </li>
         <li>
           <a href="/signup">Sign Up</a>

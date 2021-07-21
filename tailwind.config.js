@@ -9,8 +9,12 @@ module.exports = {
       height: {
         "9/10": "90%",
       },
+      width: {
+        "3/10": "30%",
+      },
       colors:{
         'fb-blue': '#3b5998',
+        'fb-blue-light':'#1877f2'
       },
       minHeight: {
         '0': '0',
