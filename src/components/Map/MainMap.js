@@ -9,6 +9,7 @@ function MainMap() {
   const [latitude, setLatitude] = useState(51.505);
   const [longitude, setLongitude] = useState(-0.09);
 
+  //getting user's location 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -19,7 +20,6 @@ function MainMap() {
       (err) => console.log(err)
     );
   }, []);
-
 
   return (
     <section className="w-full h-4/5 md:w-3/4 md:h-full ">

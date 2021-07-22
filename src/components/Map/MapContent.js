@@ -1,21 +1,34 @@
 import React, { useEffect, useContext} from 'react';
 import { TileLayer, useMap, Marker, Popup} from 'react-leaflet';
-import {PlaceContext} from '../Dashboard/DashBoard'
+import {MarkerContext, AddMarkerContext} from '../Dashboard/DashBoard'
 import CustomMarker from './Marker/Marker'
 
 function MapContent({lat, lng}) {
-    const map = useMap();
+    const map = useMap(); 
 
-    const {testData} = useContext(PlaceContext)
-  
+    const {testData, setCurrentMarker} = useContext(MarkerContext)
+    const {setAddLat, setAddLng} = useContext(AddMarkerContext)
+
+    //set view when map loads
     useEffect(() => {
       map.flyTo([lat,lng], 14, {
           duration:2
       })
-      // map.setView([lat,lng], 14)
     }, [lat,lng,map])
+
+    const handleNewMarker = (e) => {
+      console.log(e.latlng)
+      const {lat, lng} = e.latlng
+      setAddLat(lat)
+      setAddLng(lng)
+
+      //remove currentMarker jsx from sidebar
+      setCurrentMarker({})
+    }
+
+    map.on('click', handleNewMarker)
   
-    return (
+    return ( 
       <>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

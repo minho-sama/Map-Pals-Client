@@ -15,6 +15,23 @@ function Navbar() {
     removeToken()
   }
 
+  // //szerverről fetchelt user a context user id alapján!
+  // const [validatedUser, setValidatedUser] = useState(null)
+  //   const validateUserById = (id) => {
+  //   fetch(`http://localhost:3000/accounts/user/${id}`)
+  //     .then(res => res.json())
+  //     .then(data=> setValidatedUser(data))
+  //     .catch(err => console.log(err))
+  // }
+  // useEffect(() => {
+  //   const getVUser = async () => {
+  //     const vUser = await validateUserById(user?._id)
+  //     setValidatedUser(vUser)
+  //   }
+  //   getVUser()
+  // }, [user])
+  // //ha ez nincs, akkor localStorageból be lehet jutni manuálisan! figyelni majd h ez a user lehet mindig frissebb lesz!
+
   return (
     <nav className="bg-fb-blue-light text-white p-2 flex items-center">
       <a href = "/" className="text-2xl">MapPals</a>

@@ -5,12 +5,18 @@ import Sidebar from '../Sidebar/Sidebar';
 import {UserContext} from '../App'
 import { Redirect } from 'react-router-dom';
 
-export const PlaceContext = React.createContext()
+export const MarkerContext = React.createContext()
+export const AddMarkerContext = React.createContext()
 
 function Dashboard() {  
-  const [currentPlace, setCurrentPlace] = useState({}) 
-
   const {user} = useContext(UserContext)
+
+  //when user clicks on an existing marker
+  const [currentMarker, setCurrentMarker] = useState({}) 
+
+  //when user clicks on map to add a new marker
+  const [addLat, setAddLat] = useState(null)
+  const [addLng, setAddLng] = useState(null)
 
     //ITT LESZ EGY CSOMÓ KÖZÖS STATE!
     const testData = [
@@ -37,10 +43,12 @@ function Dashboard() {
 
     return (
       <article className="flex-grow md:flex">
-        <PlaceContext.Provider value = {{currentPlace,setCurrentPlace, testData}}>
-          <Sidebar/>
-          <MainMap/>
-        </PlaceContext.Provider> 
+        <MarkerContext.Provider value = {{currentMarker, setCurrentMarker, testData}}>
+          <AddMarkerContext.Provider value = {{addLat, addLng, setAddLat, setAddLng}}>
+           <Sidebar/>
+           <MainMap/>
+          </AddMarkerContext.Provider>
+        </MarkerContext.Provider> 
       </article>
     )
 

@@ -6,8 +6,8 @@ import Login from './Login/Login'
 import Signup from './Signup/Signup'
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import useUser from './useUser'
-import useToken from './useToken'
+import useUser from './customHooks/useUser'
+import useToken from './customHooks/useToken'
 
 export const UserContext = React.createContext()
 export const TokenContext = React.createContext()
