@@ -1,21 +1,51 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import {UserContext, TokenContext} from '../App'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
-  const {register, handleSubmit, formState: { errors }, reset} = useForm();
+  const {register, handleSubmit, formState: { errors }} = useForm();
 
   const [errUsername, setErrUsername] = useState("")
   const [errPsw, setErrPsw] = useState("")
+  const [showNotification, setShowNotification] = useState(false)
 
   let history = useHistory()
+  const location = useLocation();
+
+  useEffect(() => {
+     console.log(location?.pathname)
+    setShowNotification(location.state?.showNotification)
+  }, [location]);
+
+  const notify = () => toast.success('Signed up successfully!', {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+
+  useEffect(() => {
+    if(showNotification){
+        notify()
+    }
+  }, [showNotification])
+
+  const {addUser} = useContext(UserContext)
+  const {addToken} = useContext(TokenContext)
 
   const onSubmit = (formData) => {
     fetch('http://localhost:3000/login', {
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formData)
-    }).then(res => res.json())
+    })
+    .then(res => res.json())
     .then(data => {
         if(data.errors){
             const {username, password} = data.errors
@@ -23,24 +53,50 @@ function Login() {
             setErrPsw(password)
             console.log(errPsw, errUsername)
         }else{
-            localStorage.setItem('token', data.token)
+            addToken(data.token)
+            addUser(data.user)
             history.push('/map')
         }
         //csinálni user contextet App.js-ben, sikeres login után populatelni
+            //frissites után nem tűnik el a userContext? ha igen, akkor useEffect-el mindig lekérni!
+            //ha az is fos akk localStorage-ba menteni, és úgy useEffect-elni
         //tokent localStoragebe lementeni
         //ha successfull login akkor redirect to /map!
         //consitional rendering (based on userContext duh)
         // /login paget is protectelni ha már be van jelentkezve!
         //protectelni react route-ot (map) ha valaki url-be ír! 
-            // csekkolni a userContextet -> ha nincsen akkor retrun <Redirect to = '/login'/>
+            // csekkolni a userContextet -> ha nincsen akkor return <Redirect to = '/login'/>
+
+        //lopni odin-book projektekből megoldást ...
+
+        //UJ TERV: app.js-ben useContext: user, setUser
+            //login.js-ben setUser sikeres login után
+                //app.js useEffect(amikor változik a user, setItem('user', JSON.tringify(user)))
+                    //navbar.js a useContext-ből kapja a usert, NEM a loc.storageból!
+                     //így üres usert fog settelni minden frissitesnel -> consitionally settelni!
+                        //eehez lehet h kell netninja: https://www.youtube.com/watch?v=SOnMln3W0U8
     })
   };
 
   return (
     <section className="w-full h-full flex justify-center">
+
+      {/* {showNotification && <h1>toastify</h1>} */}
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        />
+
       <form className="flex flex-col p-5 self-center w-4/5 md:w-2/5 lg:w-3/10 rounded-sm shadow-md min-h-3/4 justify-evenly"
         onSubmit={handleSubmit(onSubmit)}>
-        <h1 className = "text-center">Join to MapPals</h1>
+        <h1 className = "text-center">Login to MapPals</h1>
         <div className = "flex flex-col my-3">
             <label>Username:</label>
             <input  className="form-input-field" 

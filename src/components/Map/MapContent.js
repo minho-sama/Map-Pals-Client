@@ -32,7 +32,7 @@ function MapContent({lat, lng}) {
         { //marker külön componentbe!!! + useContext h ne kelljen prop drillelni!!!
           testData.map((place) => {
             return (
-              <CustomMarker place = {place}/>
+              <CustomMarker place = {place} key = {place.name}/>
             )
           })
         }

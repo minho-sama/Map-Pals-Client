@@ -1,11 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import MainMap from '../Map/MainMap';
 import Sidebar from '../Sidebar/Sidebar';
 
+import {UserContext} from '../App'
+import { Redirect } from 'react-router-dom';
+
 export const PlaceContext = React.createContext()
 
-function Dashboard() { 
+function Dashboard() {  
   const [currentPlace, setCurrentPlace] = useState({}) 
+
+  const {user} = useContext(UserContext)
 
     //ITT LESZ EGY CSOMÓ KÖZÖS STATE!
     const testData = [
@@ -26,14 +31,19 @@ function Dashboard() {
       }
     ]
 
-  return (
+  if(!user){
+    return <Redirect to ='/'/>
+  }
+
+    return (
       <article className="flex-grow md:flex">
         <PlaceContext.Provider value = {{currentPlace,setCurrentPlace, testData}}>
           <Sidebar/>
           <MainMap/>
         </PlaceContext.Provider> 
       </article>
-  );
+    )
+
 }
 
 export default Dashboard
