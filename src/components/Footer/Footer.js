@@ -1,5 +1,5 @@
 import React from 'react';
-import {AiFillGithub} from 'react-icons/ai'
+import {GoMarkGithub} from 'react-icons/go'
 
 function Footer() {
   return (
@@ -8,7 +8,7 @@ function Footer() {
           target = "_blank" rel="noreferrer"
           className = "flex gap-2 items-center justify-end px-2">
             <span className = "hover:underline">minh</span>
-            <AiFillGithub size = "20px" className = "text-yellow-400"/>
+            <GoMarkGithub size = "18px" className = "text-gray-800"/>
         </a>
     </footer>
   );

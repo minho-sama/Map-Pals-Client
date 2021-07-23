@@ -12,42 +12,31 @@ function Navbar() {
 
   const handleLogout = () => {
     removeUser()
-    removeToken()
+    removeToken() 
   }
 
-  // //szerverről fetchelt user a context user id alapján!
-  // const [validatedUser, setValidatedUser] = useState(null)
-  //   const validateUserById = (id) => {
-  //   fetch(`http://localhost:3000/accounts/user/${id}`)
-  //     .then(res => res.json())
-  //     .then(data=> setValidatedUser(data))
-  //     .catch(err => console.log(err))
-  // }
-  // useEffect(() => {
-  //   const getVUser = async () => {
-  //     const vUser = await validateUserById(user?._id)
-  //     setValidatedUser(vUser)
-  //   }
-  //   getVUser()
-  // }, [user])
-  // //ha ez nincs, akkor localStorageból be lehet jutni manuálisan! figyelni majd h ez a user lehet mindig frissebb lesz!
+  //URL LINK ALAPJÁN VÁLTOZZON A LINKEK ALATT A DEKORÁCIÓ!
+  //LINKEKE ALATT FEHÉR VONAL (aktuális oldal, useParams-sal)
 
   return (
-    <nav className="bg-fb-blue-light text-white p-2 flex items-center">
+    <nav className="bg-fb-blue-light text-white p-2 flex items-center px-4">
       <a href = "/" className="text-2xl">MapPals</a>
       <FaMapMarked className = "mx-2 w-4"/>
 
-      <ul className = "justify-end flex gap-7 w-full navbar">
+      <ul className = "justify-end flex w-full gap-7 navbar">
 
         {user ? <>
-                <li>
-                  <a href="/">search friends</a>
+                <li className = "border-b-2 border-fb-blue">
+                 <Link to = '/map' className = "text-center">The Map</Link>
                 </li>
                 <li>
-                  <a href="/profile">my profile: {user.username}</a>
+                  <a href="/">Search Friends</a>
                 </li>
                 <li>
-                  <button onClick = {handleLogout}>log out</button>
+                  <a href="/profile">My Profile: {user.username}</a>
+                </li>
+                <li>
+                  <button onClick = {handleLogout}>Log Out</button>
                 </li>
                 </>
         :<>

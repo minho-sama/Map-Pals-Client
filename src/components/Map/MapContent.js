@@ -1,13 +1,17 @@
-import React, { useEffect, useContext} from 'react';
-import { TileLayer, useMap, Marker, Popup} from 'react-leaflet';
+import React, { useEffect, useContext, useState} from 'react';
+import { TileLayer, useMap, Marker, Popup, useMapEvents} from 'react-leaflet';
 import {MarkerContext, AddMarkerContext} from '../Dashboard/DashBoard'
-import CustomMarker from './Marker/Marker'
+import CustomMarker from './CustomMarkers/CustomMarker'
+import ClientLocMarker from './CustomMarkers/ClientLocMarker'
+import TemporaryMarker from './CustomMarkers/TemporaryMarker';
+
 
 function MapContent({lat, lng}) {
     const map = useMap(); 
 
     const {testData, setCurrentMarker} = useContext(MarkerContext)
     const {setAddLat, setAddLng} = useContext(AddMarkerContext)
+    const [tempMarkPos, setTempMarkPos] = useState([])
 
     //set view when map loads
     useEffect(() => {
@@ -16,33 +20,42 @@ function MapContent({lat, lng}) {
       })
     }, [lat,lng,map])
 
+
     const handleNewMarker = (e) => {
       console.log(e.latlng)
       const {lat, lng} = e.latlng
       setAddLat(lat)
       setAddLng(lng)
 
-      //remove currentMarker jsx from sidebar
+      //remove  currentMarker jsx from sidebar
       setCurrentMarker({})
+
+      //temporary marker position
+      setTempMarkPos([lat, lng])
     }
 
-    map.on('click', handleNewMarker)
+    useMapEvents({
+      click: handleNewMarker
+    })
   
     return ( 
       <>
-        <TileLayer
+        <TileLayer 
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {/* majd törölni, vagy legyen egy emberke h itt állsz */}
-        <Marker position={[lat, lng]}>
+        {/* {marker on client's location} */}
+        <Marker position={[lat, lng]} icon = {ClientLocMarker}>
           <Popup>
-            Start adding markers of your favorite places!
+            Your position
           </Popup>
         </Marker>
 
-        { //marker külön componentbe!!! + useContext h ne kelljen prop drillelni!!!
+        {/*TEMP MARKER COMPONENT with CUSTOM COLOR !!!!!!*/}
+        {tempMarkPos.length > 0 && <Marker position = {tempMarkPos} icon = {TemporaryMarker}><Popup>Add new place here</Popup></Marker>}
+
+        { //markers with event listeners! and Popups with much info
           testData.map((place) => {
             return (
               <CustomMarker place = {place} key = {place.name}/>

@@ -13,7 +13,7 @@ function Login() {
   const [showNotification, setShowNotification] = useState(false)
 
   let history = useHistory()
-  const location = useLocation();
+  const location = useLocation(); //props from Signup form
 
   useEffect(() => {
      console.log(location?.pathname)
@@ -79,7 +79,7 @@ function Login() {
   };
 
   return (
-    <section className="w-full h-full flex justify-center">
+    <section className="w-full h-full flex justify-center bg-gray-800">
 
       {/* {showNotification && <h1>toastify</h1>} */}
       <ToastContainer
@@ -94,12 +94,11 @@ function Login() {
         pauseOnHover
         />
 
-      <form className="flex flex-col p-5 self-center w-4/5 md:w-2/5 lg:w-3/10 rounded-sm shadow-md min-h-3/4 justify-evenly"
+      <form className="flex flex-col p-5 self-center w-4/5 md:w-2/5 lg:w-3/10 rounded-sm shadow-lg min-h-3/4 justify-center bg-white"
         onSubmit={handleSubmit(onSubmit)}>
-        <h1 className = "text-center">Login to MapPals</h1>
+        <h1 className = "text-center mb-12 text-xl">Login to MapPals</h1>
         <div className = "flex flex-col my-3">
-            <label>Username:</label>
-            <input  className="form-input-field" 
+            <input className="form-input-field"  placeholder = "Username"
                 {...register('username',{required: true,})}/>
                     {errors.username?.type === 'required' && (
                     <span className="form-err-msg">username is required</span>
@@ -107,8 +106,7 @@ function Login() {
                     {errUsername.length > 0 && <span className = "form-err-msg">{errUsername}</span>}
         </div>
         <div className = "flex flex-col my-5">
-            <label>Password:</label>
-            <input type="password" autoComplete="off" className = "form-input-field"
+            <input type="password" autoComplete="off" className = "form-input-field" placeholder = "Password"
             {...register('password', {required: true})}/>
                 {errors.password?.type === 'required' && (
                 <span className="form-err-msg">password is required</span>

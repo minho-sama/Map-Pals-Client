@@ -22,7 +22,7 @@ function MainMap() {
   }, []);
 
   return (
-    <section className="w-full h-4/5 md:w-3/4 md:h-full ">
+    <section className="w-full h-full md:w-3/4 md:h-full ">
       <MapContainer
         center={[latitude, longitude]}
         zoom={13}
