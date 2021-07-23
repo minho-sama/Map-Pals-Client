@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import { set, useForm } from 'react-hook-form';
-import { useHistory, Redirect } from "react-router-dom";
+import { useForm } from 'react-hook-form';
+import { useHistory} from "react-router-dom";
 
 function Signup() {
     const {register, handleSubmit, formState: { errors }} = useForm();
@@ -27,10 +27,13 @@ function Signup() {
                     setErrPsw("")
                 }, 3000)
             } else{
-                console.log('successful signup!')
+                //successful signup
                 history.push({
                     pathname: '/login',
-                    state: { showNotification: true }
+                    state: { 
+                        showNotification: true,
+                        username: data.user.username,
+                    }
                 });
             }
         })

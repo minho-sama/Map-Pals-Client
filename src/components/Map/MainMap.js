@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { MapContainer} from 'react-leaflet';
 import MapContent from './MapContent'
-import GeoSearch from './GeoSearch/GeoSearch'
+import '../Map/GeoSearch/geosearch.css'
 
 function MainMap() {
 
@@ -30,7 +30,6 @@ function MainMap() {
         className="w-full h-full"
       >
         <MapContent lat={latitude} lng={longitude}/>
-        <GeoSearch/>
 
       </MapContainer>
     </section>

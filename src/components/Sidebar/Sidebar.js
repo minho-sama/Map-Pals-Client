@@ -6,7 +6,10 @@ import AddMarkerForm from './AddMarkerForm'
 
 function Sidebar() {
 
+  //clicked marker by client
   const {currentMarker} = useContext(MarkerContext)
+
+  //coords of new marker
   const {addLat, addLng} = useContext(AddMarkerContext)
 
   if(JSON.stringify(currentMarker) === '{}' && !addLat){
@@ -20,9 +23,10 @@ function Sidebar() {
     )
   } else{ 
     return (
-      <section className="w-full h-1/5 shadow-inner md:w-1/4 md:h-full p-4 flex flex-col items-center justify-center bg-gray-800 text-white">
+      <section 
+        className={'w-full h-1/5 shadow-inner md:w-1/4 md:h-full p-4 flex flex-col items-center justify-center bg-gray-800 text-white'}>
           {
-            JSON.stringify(currentMarker) === '{}' ? "" :
+            JSON.stringify(currentMarker) === '{}' ? null :
             <>
             <p>marker name: {currentMarker.name} added by: minho</p> 
             <p>marker likes: {currentMarker.likes}</p>

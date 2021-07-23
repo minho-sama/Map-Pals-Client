@@ -5,6 +5,8 @@ import CustomMarker from './CustomMarkers/CustomMarker'
 import ClientLocMarker from './CustomMarkers/ClientLocMarker'
 import TemporaryMarker from './CustomMarkers/TemporaryMarker';
 
+//geosearch
+import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 
 function MapContent({lat, lng}) {
     const map = useMap(); 
@@ -37,6 +39,16 @@ function MapContent({lat, lng}) {
     useMapEvents({
       click: handleNewMarker
     })
+
+    //geosearch
+    const provider = new OpenStreetMapProvider();
+    const searchControl = new GeoSearchControl({
+      provider: provider,
+    });
+    useEffect(() => { 
+      map.addControl(searchControl);
+    }, [map])
+
   
     return ( 
       <>
@@ -52,7 +64,7 @@ function MapContent({lat, lng}) {
           </Popup>
         </Marker>
 
-        {/*TEMP MARKER COMPONENT with CUSTOM COLOR !!!!!!*/}
+        {/*TEMPORARY MARKER COMPONENT with custom color*/}
         {tempMarkPos.length > 0 && <Marker position = {tempMarkPos} icon = {TemporaryMarker}><Popup>Add new place here</Popup></Marker>}
 
         { //markers with event listeners! and Popups with much info

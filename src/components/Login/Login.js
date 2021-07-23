@@ -12,12 +12,15 @@ function Login() {
   const [errPsw, setErrPsw] = useState("")
   const [showNotification, setShowNotification] = useState(false)
 
+  const [preUsername, setPreUsername] = useState("")
+
   let history = useHistory()
   const location = useLocation(); //props from Signup form
 
   useEffect(() => {
-     console.log(location?.pathname)
+    console.log(location?.pathname)
     setShowNotification(location.state?.showNotification)
+    setPreUsername(location.state?.username)
   }, [location]);
 
   const notify = () => toast.success('Signed up successfully!', {
@@ -81,11 +84,7 @@ function Login() {
   return (
     <section className="w-full h-full flex justify-center bg-gray-800">
 
-      {/* {showNotification && <h1>toastify</h1>} */}
       <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar
         newestOnTop={false}
         closeOnClick
         rtl={false}
@@ -98,7 +97,7 @@ function Login() {
         onSubmit={handleSubmit(onSubmit)}>
         <h1 className = "text-center mb-12 text-xl">Login to MapPals</h1>
         <div className = "flex flex-col my-3">
-            <input className="form-input-field"  placeholder = "Username"
+            <input className="form-input-field" defaultValue = {preUsername} placeholder = "Username"
                 {...register('username',{required: true,})}/>
                     {errors.username?.type === 'required' && (
                     <span className="form-err-msg">username is required</span>
