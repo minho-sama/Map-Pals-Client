@@ -9,7 +9,7 @@ function CustomMarker({ place }) {
   return (
     <div>
       <Marker
-        position={place.coords}
+        position={[place.lat, place.lng]}
         eventHandlers={{
           click: (e) => {
             setCurrentMarker(place);
@@ -21,7 +21,7 @@ function CustomMarker({ place }) {
         }}
       >
         <Popup>
-            {place.name}
+        <span className = "font-semibold">{place.name}</span>
         </Popup>
       </Marker>
     </div>

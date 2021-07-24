@@ -1,9 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 
 function useFetch(url) {
 
     const [data, setData] = useState(null)
     const [error, setError] = useState(null)
+
+    //doesnt matter if true or false
+    const [refresh, setRefresh] = useState(false)
     
     useEffect(() => {
         fetch(url)
@@ -14,9 +17,9 @@ function useFetch(url) {
             .then(data=> setData(data))
             .catch(err => setError(err))
 
-    }, [url])
+    }, [url, refresh])
 
-    return {data, setData, error, setError}
+    return {data, setData, error, setError, refresh, setRefresh}
 }
 
 export default useFetch

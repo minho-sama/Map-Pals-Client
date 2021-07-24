@@ -3,8 +3,9 @@ import {MarkerContext, AddMarkerContext} from '../Dashboard/DashBoard'
 import { ReactComponent as Logo } from '../../assets/worldwide.svg';
 import {BsArrowRight} from 'react-icons/bs'
 import AddMarkerForm from './AddMarkerForm'
+import CurrentMarker from './CurrentMarker'
 
-function Sidebar() {
+function Sidebar({refreshMarkers, setRefreshMarkers}) {
 
   //clicked marker by client
   const {currentMarker} = useContext(MarkerContext)
@@ -23,20 +24,15 @@ function Sidebar() {
     )
   } else{ 
     return (
-      <section 
-        className={'w-full h-1/5 shadow-inner md:w-1/4 md:h-full p-4 flex flex-col items-center justify-center bg-gray-800 text-white'}>
-          {
-            JSON.stringify(currentMarker) === '{}' ? null :
-            <>
-            <p>marker name: {currentMarker.name} added by: minho</p> 
-            <p>marker likes: {currentMarker.likes}</p>
-            </>        
-          }
-          {
-            addLat && <AddMarkerForm addLat = {addLat} addLng = {addLng}/>
-          }
-
-      </section>
+      <>
+       {
+         JSON.stringify(currentMarker) === '{}' ? null :
+         <CurrentMarker currentMarker = {currentMarker} />    
+       }
+       {
+         addLat && <AddMarkerForm addLat = {addLat} addLng = {addLng} refreshMarkers = {refreshMarkers} setRefreshMarkers = {setRefreshMarkers}/>
+       }
+      </>
     );
   }
 }

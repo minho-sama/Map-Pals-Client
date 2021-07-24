@@ -3,9 +3,9 @@ import {UserContext, TokenContext} from '../App'
 import {useForm} from 'react-hook-form'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import colorMap from '../../assets/color-map.png'
+import colorMap from '../../assets/color-map.png';
 
-function AddMarkerForm({addLat, addLng}) {
+function AddMarkerForm({addLat, addLng, refreshMarkers, setRefreshMarkers}) {
 
     const {user} = useContext(UserContext)
     const {token} = useContext(TokenContext)
@@ -20,7 +20,7 @@ function AddMarkerForm({addLat, addLng}) {
             name: formData.name,
             description: formData.description,
             image_url: formData.image_url
-        }
+    }
 
         //előbb auth headernélkü próbálni! (token)
         fetch('http://localhost:3000/marker/create', {
@@ -38,6 +38,9 @@ function AddMarkerForm({addLat, addLng}) {
                 notifyError()
             } else{
                 notifyAdded()
+
+                //trigger refresh in useFetch hook
+                setRefreshMarkers(!refreshMarkers)
             }
         })
         reset()
@@ -56,39 +59,39 @@ function AddMarkerForm({addLat, addLng}) {
     });
 
     return ( 
-        <> 
-        <ToastContainer  position = "top-center" autoClose = {3000} hideProgressBar newestOnTop={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
-        <figure className = "flex flex-col items-center mb-12">
-            <figcaption className = "mb-5">Share your place with others!</figcaption>
-            <img src = {colorMap} alt = "color-map" className = "w-1/2"/>
-        </figure>
-
-        <form className = "flex flex-col gap-10 w-full"
-            encType="multipart/form-data"
-            onSubmit = {handleSubmit(onSubmit)}>
-
-            <div className = "flex flex-col">
-              <input {...register('name',{required:true})} className = "border-2 border-fb-blue rounded-sm focus-outline-blue text-black p-1 text-sm" 
-                    autoComplete = "off" placeholder = "Place's name"/>
-                  {errors.name?.type === 'required' && (
-                      <span className = "form-err-msg mt-1">You must give a name to the place</span>
-                  )}
-            </div>
-            <div className = "flex flex-col">
-              <textarea {...register('description',{required:true})} placeholder = "Place's description" 
-                className = "border-2 border-fb-blue rounded-sm focus-outline-blue text-black p-1 text-sm" rows = "4" style = {{"maxWidth": "100%", "maxHeight": "110px" }}/>
-                  {errors.description?.type === 'required' && (
-                      <span className = "form-err-msg mt-1">You must give a description to the place</span>
-                  )}
-            </div>
-            <div className = "flex flex-col bg-gray-900 py-4 text-sm  p-4">
-             <label className = "mb-2">Image URL of the place (optional):</label>
-             <input {...register('image_url')} className = "border-2 border-fb-blue rounded-sm focus-outline-blue text-black p-1 text-sm" autoComplete = "off"/>
-            </div>
-            <button className = "text-green-400 animate-pulse">Add Place</button>
-             
-        </form>
-        </>
+        <section className={'w-full h-1/5 shadow-inner md:w-1/4 md:h-full p-4 flex flex-col items-center justify-center bg-gray-800 text-white'}> 
+         <ToastContainer  position = "top-center" autoClose = {3000} hideProgressBar newestOnTop={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
+         <figure className = "flex flex-col items-center mb-12">
+             <figcaption className = "mb-5">Share your place with others!</figcaption>
+             <img src = {colorMap} alt = "color-map" className = "w-1/2"/>
+         </figure>
+ 
+         <form className = "flex flex-col gap-10 w-full"
+             encType="multipart/form-data"
+             onSubmit = {handleSubmit(onSubmit)}>
+ 
+             <div className = "flex flex-col">
+               <input {...register('name',{required:true})} className = "border-2 border-fb-blue rounded-sm focus-outline-blue text-black p-1 text-sm" 
+                     autoComplete = "off" placeholder = "Place's name"/>
+                   {errors.name?.type === 'required' && (
+                       <span className = "form-err-msg mt-1">You must give a name to the place</span>
+                   )}
+             </div>
+             <div className = "flex flex-col">
+               <textarea {...register('description',{required:true})} placeholder = "Place's description" 
+                 className = "border-2 border-fb-blue rounded-sm focus-outline-blue text-black p-1 text-sm" rows = "4" style = {{"maxWidth": "100%", "maxHeight": "110px" }}/>
+                   {errors.description?.type === 'required' && (
+                       <span className = "form-err-msg mt-1">You must give a description to the place</span>
+                   )}
+             </div>
+             <div className = "flex flex-col bg-gray-900 py-4 text-sm  p-4">
+              <label className = "mb-2">Image URL of the place (optional):</label>
+              <input {...register('image_url')} className = "border-2 border-fb-blue rounded-sm focus-outline-blue text-black p-1 text-sm" autoComplete = "off"/>
+             </div>
+             <button className = "text-green-400 animate-pulse">Add Place</button>
+              
+         </form>
+        </section>
     )
 }
 

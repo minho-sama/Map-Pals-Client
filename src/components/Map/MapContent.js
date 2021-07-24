@@ -11,7 +11,7 @@ import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 function MapContent({lat, lng}) {
     const map = useMap(); 
 
-    const {testData, setCurrentMarker} = useContext(MarkerContext)
+    const {allMarkers, setCurrentMarker} = useContext(MarkerContext)
     const {setAddLat, setAddLng} = useContext(AddMarkerContext)
     const [tempMarkPos, setTempMarkPos] = useState([])
 
@@ -60,17 +60,19 @@ function MapContent({lat, lng}) {
         {/* {marker on client's location} */}
         <Marker position={[lat, lng]} icon = {ClientLocMarker}>
           <Popup>
-            Your position
+            <span className = "font-semibold">Your position</span>
           </Popup>
         </Marker>
 
         {/*TEMPORARY MARKER COMPONENT with custom color*/}
-        {tempMarkPos.length > 0 && <Marker position = {tempMarkPos} icon = {TemporaryMarker}><Popup>Add new place here</Popup></Marker>}
+        {tempMarkPos.length > 0 && <Marker position = {tempMarkPos} icon = {TemporaryMarker}>
+              <Popup><span className = "font-semibold">Add new place here</span></Popup>
+            </Marker>}
 
         { //markers with event listeners! and Popups with much info
-          testData.map((place) => {
-            return (
-              <CustomMarker place = {place} key = {place.name}/>
+          allMarkers && allMarkers.map((place) => {
+            return ( 
+              <CustomMarker place = {place} key = {place._id}/>
             )
           })
         }
