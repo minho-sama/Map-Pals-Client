@@ -1,6 +1,6 @@
 import React from 'react';
 import {FaMapMarked} from 'react-icons/fa'
-import { Link } from 'react-router-dom';
+import { Link, useHistory} from 'react-router-dom';
 
 import {useContext} from 'react';
 import {UserContext, TokenContext} from '../App'
@@ -10,9 +10,12 @@ function Navbar() {
   const {user,removeUser} = useContext(UserContext)
   const {removeToken} = useContext(TokenContext)
 
+  let history = useHistory()
+
   const handleLogout = () => {
     removeUser()
-    removeToken() 
+    removeToken()
+    history.push('/')
   }
 
   //URL LINK ALAPJÁN VÁLTOZZON A LINKEK ALATT A DEKORÁCIÓ!

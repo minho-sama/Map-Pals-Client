@@ -18,7 +18,7 @@ function CurrentMarker({currentMarker}) {
           <img src = {`${currentMarker.img_url}`} alt = "place"/>
           <p>{currentMarker.user.username}</p>
           <p>{currentMarker.post_date}</p>
-          {user._id === currentMarker.user._id &&  <button>delete place</button>}
+          {user?._id === currentMarker.user?._id &&  <button>delete place</button>}
           <h2>Comments:</h2>
           {/* scrollbox- (vmi overflow lesz a neve) lehessen scrollolni a sidebaron belül*/}
         </section>
