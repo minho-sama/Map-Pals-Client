@@ -19,8 +19,11 @@ function AddMarkerForm({addLat, addLng, refreshMarkers, setRefreshMarkers}) {
             lng: addLng,
             name: formData.name,
             description: formData.description,
-            image_url: formData.image_url
-    }
+            imgUrl: formData.imgUrl
+        }
+        if(formData.imgUrl.length === 0){
+            delete newPlace.imgUrl
+        }
 
         //előbb auth headernélkü próbálni! (token)
         fetch('http://localhost:3000/marker/create', {
@@ -59,7 +62,7 @@ function AddMarkerForm({addLat, addLng, refreshMarkers, setRefreshMarkers}) {
     });
 
     return ( 
-        <section className={'w-full h-1/5 shadow-inner md:w-1/4 md:h-full p-4 flex flex-col items-center justify-center bg-gray-800 text-white'}> 
+        <section className={'hidden shadow-inner md:w-1/4 md:h-full p-4 md:flex flex-col items-center justify-center bg-gray-800 text-white'}> 
          <ToastContainer  position = "top-center" autoClose = {3000} hideProgressBar newestOnTop={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
          <figure className = "flex flex-col items-center mb-12">
              <figcaption className = "mb-5">Share your place with others!</figcaption>
@@ -86,7 +89,7 @@ function AddMarkerForm({addLat, addLng, refreshMarkers, setRefreshMarkers}) {
              </div>
              <div className = "flex flex-col bg-gray-900 py-4 text-sm  p-4">
               <label className = "mb-2">Image URL of the place (optional):</label>
-              <input {...register('image_url')} className = "border-2 border-fb-blue rounded-sm focus-outline-blue text-black p-1 text-sm" autoComplete = "off"/>
+              <input {...register('imgUrl')} className = "border-2 border-fb-blue rounded-sm focus-outline-blue text-black p-1 text-sm" autoComplete = "off"/>
              </div>
              <button className = "text-green-400 animate-pulse">Add Place</button>
               
