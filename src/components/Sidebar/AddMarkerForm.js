@@ -5,7 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import colorMap from '../../assets/color-map.png';
 
-function AddMarkerForm({addLat, addLng, refreshMarkers, setRefreshMarkers}) {
+
+function AddMarkerForm({addLat, addLng, setAddLat, setAddLng, refreshMarkers, setRefreshMarkers, setCurrentMarker}) {
 
     const {user} = useContext(UserContext)
     const {token} = useContext(TokenContext)
@@ -25,7 +26,6 @@ function AddMarkerForm({addLat, addLng, refreshMarkers, setRefreshMarkers}) {
             delete newPlace.imgUrl
         }
 
-        //előbb auth headernélkü próbálni! (token)
         fetch('http://localhost:3000/marker/create', {
             method:'POST',
             headers: new Headers ({
@@ -41,6 +41,11 @@ function AddMarkerForm({addLat, addLng, refreshMarkers, setRefreshMarkers}) {
                 notifyError()
             } else{
                 notifyAdded()
+
+                //"rerender" sidebar to have the new place's infos
+                setCurrentMarker(data)
+                setAddLat(null) 
+                setAddLng(null)
 
                 //trigger refresh in useFetch hook
                 setRefreshMarkers(!refreshMarkers)

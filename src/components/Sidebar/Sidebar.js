@@ -3,15 +3,15 @@ import {MarkerContext, AddMarkerContext} from '../Dashboard/DashBoard'
 import { ReactComponent as Logo } from '../../assets/worldwide.svg';
 import {BsArrowRight} from 'react-icons/bs'
 import AddMarkerForm from './AddMarkerForm'
-import CurrentMarker from './CurrentMarker'
+import CurrentMarker from './CurrentMarker/CurrentMarker'
 
 function Sidebar({refreshMarkers, setRefreshMarkers}) {
 
   //clicked marker by client
-  const {currentMarker} = useContext(MarkerContext)
+  const {currentMarker, setCurrentMarker} = useContext(MarkerContext)
 
   //coords of new marker
-  const {addLat, addLng} = useContext(AddMarkerContext)
+  const {addLat, addLng, setAddLat, setAddLng} = useContext(AddMarkerContext)
 
   if(JSON.stringify(currentMarker) === '{}' && !addLat){
     return (
@@ -27,10 +27,10 @@ function Sidebar({refreshMarkers, setRefreshMarkers}) {
       <>
        {
          JSON.stringify(currentMarker) === '{}' ? null :
-         <CurrentMarker currentMarker = {currentMarker} />    
+         <CurrentMarker currentMarker = {currentMarker} setCurrentMarker = {setCurrentMarker} refreshMarkers = {refreshMarkers} setRefreshMarkers = {setRefreshMarkers} />    
        }
        {
-         addLat && <AddMarkerForm addLat = {addLat} addLng = {addLng} refreshMarkers = {refreshMarkers} setRefreshMarkers = {setRefreshMarkers}/>
+         addLat && <AddMarkerForm addLat = {addLat} addLng = {addLng} setAddLat = {setAddLat} setAddLng = {setAddLng} refreshMarkers = {refreshMarkers} setRefreshMarkers = {setRefreshMarkers} setCurrentMarker = {setCurrentMarker}/>
        }
       </>
     );
