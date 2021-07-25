@@ -1,15 +1,14 @@
 import React, {useContext} from 'react'
 import {UserContext, TokenContext} from '../../App'
 import {AiFillLike} from 'react-icons/ai'
-import {BsFillBookmarkFill} from 'react-icons/bs'
-import {MdDelete} from 'react-icons/md'
+import {RiBookmark3Fill} from 'react-icons/ri'
+import {FaTrashAlt} from 'react-icons/fa'
 import CommentSection from './CommentSection'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function CurrentMarker({currentMarker, refreshMarkers, setRefreshMarkers, setCurrentMarker}) {
 
-    console.log(currentMarker)
     const {user} = useContext(UserContext)
     const {token} = useContext(TokenContext) //majd delete requesthez!
 
@@ -24,7 +23,7 @@ function CurrentMarker({currentMarker, refreshMarkers, setRefreshMarkers, setCur
         .then(res => res.json())
         .then(data => {
             if(data.err){
-                notifyErrorDeleted()
+                notifyError()
             } else{
                 notifyDeleted()
 
@@ -35,13 +34,40 @@ function CurrentMarker({currentMarker, refreshMarkers, setRefreshMarkers, setCur
         })
     } 
 
+    const handleLike = () => {
+
+        if(currentMarker.likes.includes(user._id)){
+            currentMarker.likes.splice(currentMarker.likes.indexOf(user._id),1)
+        } else{
+            currentMarker.likes.push(user._id)
+        }
+        fetch(`http://localhost:3000/marker/${currentMarker._id}/like`, {
+            method: 'PATCH',
+            headers: new Headers ({
+                'Authorization': `token ${token}`,
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify({
+                likes: currentMarker.likes
+            })
+        })
+        .then(res => res.json()) 
+        .then(data => {
+            if(data.err){
+                notifyError() //
+            }
+        })
+        //refresh again
+        setRefreshMarkers(!refreshMarkers)
+    }
+
     const notifyDeleted = () => toast.success(`You removed ${currentMarker?.name} !`, {
         closeOnClick: true,
         draggable: true,
         progress: undefined,
       });
 
-    const notifyErrorDeleted = () => toast.error(`An error occured while deleting ${currentMarker?.name}`, {
+    const notifyError = () => toast.error('An error occured with the server', {
       closeOnClick: true,
       draggable: true,
       progress: undefined,
@@ -63,13 +89,13 @@ function CurrentMarker({currentMarker, refreshMarkers, setRefreshMarkers, setCur
                   <h1 className = "text-2xl font-semibold text-fb-blue-light w-full">
                       {currentMarker.name}
                   </h1>
-                  <div className = "flex items-center gap-4 justify-end">
-                      <figure className = "flex items-center text-lg">
-                          <AiFillLike className = "cursor-pointer"/>
+                  <div className = "flex items-center gap-4 justify-end ">
+                      <figure onClick = {handleLike} className = {`flex items-center text-lg cursor-pointer ${currentMarker.likes.includes(user._id) && 'text-fb-blue-light'}`}>
+                          <AiFillLike/>
                           <figcaption>{currentMarker.likes.length}</figcaption>
                       </figure>
-                      <BsFillBookmarkFill className = "text-lg cursor-pointer"/>
-                      {user?._id === currentMarker.user?._id &&  <MdDelete onClick = {handleDelete} className = "text-xl text-red-600 cursor-pointer"/> }  
+                      <RiBookmark3Fill className = "text-lg cursor-pointer"/>
+                      {user?._id === currentMarker.user?._id &&  <FaTrashAlt onClick = {handleDelete} className = "text-md text-red-600 cursor-pointer"/> }  
                   </div>
                 </div>
 
