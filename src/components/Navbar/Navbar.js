@@ -23,20 +23,19 @@ function Navbar() {
 
   return (
     <nav className="bg-fb-blue-light text-white p-2 flex items-center px-4">
-      <a href = "/" className="text-2xl">MapPals</a>
+      <a href = "/" className="text-base md:text-2xl">MapPals</a>
       <FaMapMarked className = "mx-2 w-4"/>
-
-      <ul className = "justify-end flex w-full gap-7 navbar">
+      <ul className = "navbar text-sm md:text-base justify-end items-center flex w-full gap-5">
 
         {user ? <>
                 <li className = "border-b-2 border-fb-blue">
                  <Link to = '/map' className = "text-center">The Map</Link>
                 </li>
                 <li>
-                  <a href="/">Search Friends</a>
+                  <a href="/">Friends</a>
                 </li>
                 <li>
-                  <a href="/profile">My Profile: {user.username}</a>
+                  <a href="/profile">{user.username} IMG</a>
                 </li>
                 <li>
                   <button onClick = {handleLogout}>Log Out</button>
@@ -56,6 +55,7 @@ function Navbar() {
         }
 
       </ul>
+
     </nav>
   );
 }

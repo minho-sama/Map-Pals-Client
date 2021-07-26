@@ -21,7 +21,14 @@ function CustomMarker({ place }) {
         }}
       >
         <Popup>
-        <span className = "font-semibold">{place.name}</span>
+          <figure>
+            <figcaption className = "font-semibold">{place.name}</figcaption><br/>
+            <img src = {place.imgUrl} alt = "place img" className = "rounded-sm"/>
+            <figcaption style = {{"font-size":"9px", "float": "right", "margin-top":"1px"}}>
+              added by <span className = "font-semibold">
+                {place.user.username}</span>
+            </figcaption>
+          </figure>
         </Popup>
       </Marker>
     </div>
