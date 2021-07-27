@@ -1,10 +1,15 @@
 import React, { useContext } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import { MarkerContext, AddMarkerContext } from '../../Dashboard/DashBoard';
+import DefaultCity from '../../../assets/defaultCity.jpg'
 
 function CustomMarker({ place }) {
   const { setCurrentMarker } = useContext(MarkerContext);
   const { setAddLat, setAddLng } = useContext(AddMarkerContext);
+
+  const addDefaultSrc = (e) => {
+    e.target.src = DefaultCity
+}
 
   return (
     <div>
@@ -23,8 +28,8 @@ function CustomMarker({ place }) {
         <Popup>
           <figure>
             <figcaption className = "font-semibold">{place.name}</figcaption><br/>
-            <img src = {place.imgUrl} alt = "place img" className = "rounded-sm"/>
-            <figcaption style = {{"font-size":"9px", "float": "right", "margin-top":"1px"}}>
+            <img src = {place.imgUrl} onError = {addDefaultSrc} alt = "place img" className = "rounded-sm"/>
+            <figcaption style = {{"fontSize":"9px", "float": "right", "marginTop":"1px"}}>
               added by <span className = "font-semibold">
                 {place.user.username}</span>
             </figcaption>

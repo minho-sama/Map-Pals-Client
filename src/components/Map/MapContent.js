@@ -69,7 +69,7 @@ function MapContent({lat, lng}) {
               <Popup><span className = "font-semibold">Add new place here</span></Popup>
             </Marker>}
 
-        { //markers with event listeners! and Popups with much info
+        { //markers with event listeners! and Popups with more info
           allMarkers && allMarkers.map((place) => {
             return ( 
               <CustomMarker place = {place} key = {place._id}/>

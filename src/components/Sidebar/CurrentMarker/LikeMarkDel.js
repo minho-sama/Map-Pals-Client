@@ -27,8 +27,6 @@ function LikeMarkDel({user, token, notifyDeleted, notifyError, currentMarker, re
         })
     } 
 
-    React.useEffect(() => console.log(user), [])
-
     const handleLike = () => {
 
         if(currentMarker.likes.includes(user._id)){
@@ -91,11 +89,10 @@ function LikeMarkDel({user, token, notifyDeleted, notifyError, currentMarker, re
       <div className="flex items-center gap-4 justify-end ">
         <figure
           onClick={handleLike}
-          className={`flex items-center text-lg cursor-pointer ${
-            currentMarker.likes.includes(user._id) && 'text-fb-blue-light'
-          }`}
+          className={`flex items-center text-lg cursor-pointer
+            ${currentMarker.likes.includes(user._id) && 'text-fb-blue-light'}`}
         >
-          <AiFillLike />
+          <AiFillLike/>
           <figcaption>{currentMarker.likes.length}</figcaption>
         </figure>
         <RiBookmark3Fill onClick={handleBookmark} className={`text-lg cursor-pointer ${user.bookmarks.includes(currentMarker._id) && 'text-fb-blue-light'}`} />
