@@ -45,6 +45,51 @@ function CommentSection({user, token, notifyError, currentMarker}) {
         })
     }
 
+    const deleteComment = (id) => {
+
+        fetch(`http://localhost:3000/marker/comment/${id}/delete`, {
+            method:'DELETE',
+            headers: new Headers ({
+                'Authorization': `token ${token}`,
+                'Content-Type': 'application/json'
+            }),
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.err){
+                notifyError()
+            } else{
+                setRefreshComments(!refreshComments)
+            }
+        })
+
+    } 
+
+    const likeComment = (comment) => {
+
+        if(comment.likes.includes(user._id)){
+            comment.likes.splice(comment.likes.indexOf(user._id),1)
+        } else{
+            comment.likes.push(user._id)
+        }
+        fetch(`http://localhost:3000/marker/comment/${comment._id}/like`, {
+            method: 'PATCH',
+            headers: new Headers ({
+                'Authorization': `token ${token}`,
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify({
+                likes: comment.likes
+            })
+        })
+        .then(res => res.json()) 
+        .then(data => {
+            if(data.err){
+            }
+        })
+        setRefreshComments(!refreshComments)
+    }
+
     return (
         <section className = "border-t-2 border-grey-700 mt-5 py-2"> 
          <div className = "flex items-center">
@@ -66,7 +111,7 @@ function CommentSection({user, token, notifyError, currentMarker}) {
                  className = "p-1 outline-none border-b-2 border-fb-blue-light text-sm" autoComplete = "off" placeholder = "add comment"/>
                  <div className = "flex items-center">
                      {errors.content?.type === 'required' && (
-                         <span className = "form-err-msg w-full">You must enter a comment</span>
+                         <span className = "form-err-msg w-full" style = {{fontSize:'12px'}}>You must enter a comment</span>
                      )}
                  <button className = "ml-auto "><BiRightArrowAlt className = "text-fb-blue-light text-base"/></button>
                </div>
@@ -88,21 +133,25 @@ function CommentSection({user, token, notifyError, currentMarker}) {
         { 
             comments && comments.map(comment => {
                 return (
-                  <div className = "flex items-center my-7">
+                  <div className = "flex items-center my-7 group" key = {comment._id}>
                     <img src = {deleteThis} alt = "profpic" className = 'w-6 rounded-full'/>
                     <div className = "bg-blue-100 rounded-lg shadow-sm p-2 pl-3 my-2 flex flex-col w-full relative" >
                         <h1 className = 'text-xs font-semibold text-fb-blue-light' >
                             {comment.user.username}
                         </h1>
                         <p>{comment.content}</p>
-                        {/* <span class = "absolute -top-4 right-1 text-xs"> delete</span> */}
                         <div className = 'absolute text-xs -bottom-5'>
-                            <span className = "cursor-pointer hover:text-fb-blue-light">Like </span>
-                            |<span> {comment.time_since_post}</span>
+                            <span className = "cursor-pointer hover:text-fb-blue-light"
+                                onClick = {() => likeComment(comment)}> {comment.likes.includes(user._id) ? 'Unlike' : 'Like'} </span>
+                            |<span> {comment.time_since_post} </span>
+                            {user?._id === comment.user?._id &&
+                                 <span onClick = {() => deleteComment(comment._id)}
+                                    className = "text-xs opacity-0 group-hover:opacity-100 cursor-pointer text-red-600"
+                                    >| delete</span>}
                         </div>
                         <div className = "absolute flex items-center right-2 -bottom-2 bg-fb-blue-light rounded-lg p-1 text-white" style = {{fontSize:"11px"}}>
                           <AiFillLike/>
-                          <span>5</span>
+                          <span>{comment.likes.length}</span>
                         </div>
 
                     </div> 
