@@ -5,9 +5,10 @@ import Landing from './Landing/Landing';
 import Login from './Login/Login'
 import Signup from './Signup/Signup'
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import useUser from './customHooks/useUser'
 import useToken from './customHooks/useToken'
+import Friends from './Friends/Friends'
 
 export const UserContext = React.createContext()
 export const TokenContext = React.createContext()
@@ -34,7 +35,10 @@ function App() {
               <Login/>
             </Route>
             <Route path = "/map">
-              <Dashboard />
+              <Dashboard/>
+            </Route>
+            <Route path = "/friends">
+              <Friends/>
             </Route>
           </Switch>
           <Footer />

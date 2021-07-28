@@ -17,10 +17,6 @@ function useUser() {
         localStorage.removeItem('user')
         setUser(null)
     } 
-    
-    //lehet kell majd REFRESH USER => fetchelni user._id alapján a usert, mert mondjuk változott vmi (új markert hozzáadott)
-    //vagy elég az, ha amikor fetch-csel postolok új adatot,utána a returned user objectet setUser-elem?
-    //ne nagyon baszogasd a functionöket lol
 
     return {addUser, user, removeUser}
 }

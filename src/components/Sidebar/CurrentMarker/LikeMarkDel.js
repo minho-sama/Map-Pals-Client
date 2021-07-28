@@ -16,7 +16,7 @@ function LikeMarkDel({user, token, notifyDeleted, notifyError, currentMarker, re
         .then(res => res.json())
         .then(data => {
             if(data.err){
-                notifyError()
+                notifyError() 
             } else{
                 notifyDeleted()
 

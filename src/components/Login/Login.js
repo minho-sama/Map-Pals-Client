@@ -60,24 +60,6 @@ function Login() {
             addUser(data.user)
             history.push('/map')
         }
-        //csinálni user contextet App.js-ben, sikeres login után populatelni
-            //frissites után nem tűnik el a userContext? ha igen, akkor useEffect-el mindig lekérni!
-            //ha az is fos akk localStorage-ba menteni, és úgy useEffect-elni
-        //tokent localStoragebe lementeni
-        //ha successfull login akkor redirect to /map!
-        //consitional rendering (based on userContext duh)
-        // /login paget is protectelni ha már be van jelentkezve!
-        //protectelni react route-ot (map) ha valaki url-be ír! 
-            // csekkolni a userContextet -> ha nincsen akkor return <Redirect to = '/login'/>
-
-        //lopni odin-book projektekből megoldást ...
-
-        //UJ TERV: app.js-ben useContext: user, setUser
-            //login.js-ben setUser sikeres login után
-                //app.js useEffect(amikor változik a user, setItem('user', JSON.tringify(user)))
-                    //navbar.js a useContext-ből kapja a usert, NEM a loc.storageból!
-                     //így üres usert fog settelni minden frissitesnel -> consitionally settelni!
-                        //eehez lehet h kell netninja: https://www.youtube.com/watch?v=SOnMln3W0U8
     })
   };
 

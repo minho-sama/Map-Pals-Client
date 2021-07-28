@@ -21,7 +21,15 @@ function MainMap() {
     );
   }, []);
 
+  // const handleclick = () => {
+  //   setLatitude(0)
+  //   setLongitude(0)
+  //   console.log("clicked")
+  // }
+
   return (
+    <>
+    {/* <span className = "absolute bg-red-700 bottom-0" onClick = {handleclick}> Go To Bookmarked</span> */}
     <section className="w-full h-full md:w-3/4 md:h-full ">
       <MapContainer
         center={[latitude, longitude]}
@@ -33,6 +41,7 @@ function MainMap() {
 
       </MapContainer>
     </section>
+    </>
   );
 }
 

@@ -14,10 +14,6 @@ function CommentSection({user, token, notifyError, currentMarker}) {
 
     const {register, handleSubmit, formState: { errors }, reset} = useForm();
 
-    React.useEffect(() => {
-        console.log(comments)
-    }, [comments])
-
     const addComment = (commentData) => {
         const newComment = {
             marker: currentMarker._id,
