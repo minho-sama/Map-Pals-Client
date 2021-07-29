@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {FaMapMarked} from 'react-icons/fa'
-import { Link, useHistory, useLocation} from 'react-router-dom';
+import {Link, useHistory, useLocation} from 'react-router-dom';
 import {UserContext, TokenContext} from '../App'
 
 function Navbar() {
@@ -47,20 +47,26 @@ function Navbar() {
     if(user){
       verifyToken()
     }
-  }, [])
+  }, [user])
 
   return (
     <nav className="bg-fb-blue-light text-white p-2 flex items-center px-4">
       <a href = "/" className="text-base md:text-2xl">MapPals</a>
       <FaMapMarked className = "mx-2 w-4"/>
-      <ul className = "navbar text-sm md:text-base justify-end items-center flex w-full gap-5">
+      <ul className = "navbar text-sm md:text-base justify-end items-center flex w-full gap-6">
 
         {user ? <>
                 <li className = {decideBorder('/map')}>
                  <Link to = '/map' className = "text-center">The Map</Link>
                 </li>
                 <li className = {decideBorder('/friends')}>
-                  <Link to="/friends">Search Friends</Link>
+                  <Link to="/friends" className = 'relative'>
+                    Friends
+                    {user.friendRequests.length > 0 && 
+                      <span className = "text-xs text-white bg-red-600 rounded-sm px-1 absolute -top-1">
+                        {user.friendRequests.length}
+                      </span>}
+                  </Link>
                 </li>
                 <li className = {decideBorder('/profile')}>
                   <Link to = "/profile">{user.username} IMG</Link>

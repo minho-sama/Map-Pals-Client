@@ -3,6 +3,7 @@ import { UserContext, TokenContext } from '../App';
 import useFetch from '../customHooks/useFetch';
 import {BsSearch} from 'react-icons/bs'
 import UserCard from './UserCard'
+import { ToastContainer, toast } from 'react-toastify';
 
 function Friends() {
   const { user } = useContext(UserContext);
@@ -19,11 +20,23 @@ function Friends() {
     setRefresh: setRefreshUsers,
   } = useFetch('http://localhost:3000/users');
 
+  React.useEffect(() => {
+    console.log(user)
+  }, [user])
+
   const filteredUsers = users?.filter(user => user.username.toLowerCase().includes(searchValue.toLowerCase()));
 
+  const notifyError = () => toast.error('An error occured with the server', {
+    closeOnClick: true,
+    draggable: true,
+    progress: undefined,
+  });
+
   return (
-      <article className="flex-grow md:flex flex-col p-4 items-center">
-          <div className = "w-1/2">
+    <>
+      <ToastContainer  position = "top-center" autoClose = {3000} hideProgressBar newestOnTop={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
+      <article className="flex-grow flex flex-col p-4 items-center">
+          <div className = "w-full md:w-1/2">
             <section className = "w-full p-2 flex items-center justify-center">
               <div className = "text-black p-1 text-sm w-1/2 flex items-center">
                 <input
@@ -34,18 +47,33 @@ function Friends() {
                   <BsSearch className = "text-gray-400 -ml-4 mb-1"/>
               </div>
             </section>
-            <section className = "border-2 border-red-500">
-              <h1 className = "text-gray-500 italic">friend requests</h1>
-              <span>you have no pending friend requests</span>
+            <section className = "mt-4 mb-10 flex flex-col items-center">
+              <h1 className = "text-gray-500 italic mb-3 self-start">friend requests</h1>
+              {
+                user.friendRequests.length > 0 ? 
+                // itt majd mappolni UserCard-ot
+                  user.friendRequests.map(profile => {
+                    return <p key = {profile._id}>{profile.username}</p>
+                  }) :
+                  <span className = "text-blue-400" >you have no pending friend requests</span>
+              }
             </section>
-            <h2 className = "text-gray-500 italic">Friend Suggestions</h2>
+            <h1 className = "text-gray-500 italic w-full border-t-2 border-gray-300 pt-2">MapPals community:</h1>
             {
-              filteredUsers && filteredUsers.map(profile => {
-               return <UserCard profile = {profile} user = {user} token = {token} key = {profile._id}/>
-              })
+              filteredUsers && filteredUsers.length > 0 ? filteredUsers.map(profile => {
+               return <UserCard 
+                        profile = {profile} 
+                        user = {user} token = {token} 
+                        key = {profile._id}
+                        notifyError = {notifyError}
+                        refreshUsers = {refreshUsers}
+                        setRefreshUsers = {setRefreshUsers}
+                      />
+              }) : <p className = "italic text-gray-600 mt-10">there is no user "{searchValue}"</p>
             }
           </div>
      </article>
+    </>
   );
 }
 

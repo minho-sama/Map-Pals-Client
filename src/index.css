@@ -3,23 +3,27 @@
 @tailwind utilities;
 
 .navbar li:not(:first-child){
-    @apply hover:text-gray-200 transition-colors
+  @apply hover:text-gray-200 transition-colors
 }
 
 .form-err-msg{
-    @apply text-red-500 text-sm
+  @apply text-red-500 text-sm
 }
 
 .form-input-field{
-    @apply rounded-sm border-2 border-gray-900 p-3
+  @apply rounded-sm border-2 border-gray-900 p-3
 }
 
 .focus-outline-blue{
-    @apply focus:outline-none focus:ring focus:border-blue-300
+  @apply focus:outline-none focus:ring focus:border-blue-300
+}
+
+.friendController{
+  @apply text-sm cursor-pointer w-full flex justify-end
 }
 
 ::-webkit-scrollbar {
-    width: 13px;
+  width: 13px;
 }
 
 ::-webkit-scrollbar-track {
