@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { UserContext, TokenContext } from '../App';
 import useFetch from '../customHooks/useFetch';
 import {BsSearch} from 'react-icons/bs'
-import UserCard from './UserCard'
+import UserCard from './UserCard/UserCard'
 import { ToastContainer, toast } from 'react-toastify';
 
 function Friends() {
@@ -50,7 +50,7 @@ function Friends() {
             <section className = "mt-4 mb-10 flex flex-col items-center">
               <h1 className = "text-gray-500 italic mb-3 self-start">friend requests</h1>
               {
-                user.friendRequests.length > 0 ? 
+                user && user.friendRequests.length > 0 ? 
                 // itt majd mappolni UserCard-ot
                   user.friendRequests.map(profile => {
                     return <p key = {profile._id}>{profile.username}</p>
@@ -62,9 +62,10 @@ function Friends() {
             {
               filteredUsers && filteredUsers.length > 0 ? filteredUsers.map(profile => {
                return <UserCard 
-                        profile = {profile} 
-                        user = {user} token = {token} 
                         key = {profile._id}
+                        profile = {profile} 
+                        user = {user} 
+                        token = {token} 
                         notifyError = {notifyError}
                         refreshUsers = {refreshUsers}
                         setRefreshUsers = {setRefreshUsers}
