@@ -79,7 +79,7 @@ function Login() {
         onSubmit={handleSubmit(onSubmit)}>
         <h1 className = "text-center mb-12 text-xl">Login to MapPals</h1>
         <div className = "flex flex-col my-3">
-            <input className="form-input-field" defaultValue = {preUsername} placeholder = "Username"
+            <input className="form-input-field" defaultValue = {preUsername} placeholder = "Username" autoComplete = "off"
                 {...register('username',{required: true,})}/>
                     {errors.username?.type === 'required' && (
                     <span className="form-err-msg">username is required</span>

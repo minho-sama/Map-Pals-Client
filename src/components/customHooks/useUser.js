@@ -18,7 +18,7 @@ function useUser() {
         setUser(null)
     } 
 
-    return {addUser, user, removeUser}
+    return {addUser, user, removeUser, setUser}
 }
 
 export default useUser

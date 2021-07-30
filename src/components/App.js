@@ -15,13 +15,13 @@ export const TokenContext = React.createContext()
 
 function App() {
 
-  const {addUser, user, removeUser} = useUser()
+  const {addUser, user, removeUser, setUser} = useUser()
   const {addToken, token, removeToken} = useToken()
 
   return (
     <Router>
       <TokenContext.Provider value={{addToken,token,removeToken}}>
-       <UserContext.Provider value = {{addUser, user, removeUser}}>
+       <UserContext.Provider value = {{addUser, user, removeUser, setUser}}>
         <article className="h-screen flex flex-col font-custom">
           <Navbar />
           <Switch>

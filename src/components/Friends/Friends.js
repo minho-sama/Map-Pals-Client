@@ -6,16 +6,14 @@ import UserCard from './UserCard/UserCard'
 import { ToastContainer, toast } from 'react-toastify';
 
 function Friends() {
-  const { user } = useContext(UserContext);
+  const {user, setUser} = useContext(UserContext)
+
   const { token } = useContext(TokenContext);
 
   const [searchValue, setSearchValue] = useState('')
 
   const {
     data: users,
-    setData: setUsers,
-    error, 
-    setError,
     refresh: refreshUsers,
     setRefresh: setRefreshUsers,
   } = useFetch('http://localhost:3000/users');
@@ -52,7 +50,7 @@ function Friends() {
               {
                 user && user.friendRequests.length > 0 ? 
                 // itt majd mappolni UserCard-ot
-                  user.friendRequests.map(profile => {
+                user.friendRequests.map(profile => {
                     return <p key = {profile._id}>{profile.username}</p>
                   }) :
                   <span className = "text-blue-400" >you have no pending friend requests</span>
@@ -63,8 +61,9 @@ function Friends() {
               filteredUsers && filteredUsers.length > 0 ? filteredUsers.map(profile => {
                return <UserCard 
                         key = {profile._id}
+                        user = {user}
+                        setUser = {setUser}
                         profile = {profile} 
-                        user = {user} 
                         token = {token} 
                         notifyError = {notifyError}
                         refreshUsers = {refreshUsers}

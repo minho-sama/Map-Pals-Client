@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-.navbar li:not(:first-child){
-  @apply hover:text-gray-200 transition-colors
+.navbar li{
+  @apply border-l-2 hover:border-fb-blue transition px-2
 }
-
+ 
 .form-err-msg{
-  @apply text-red-500 text-sm
+  @apply text-red-500 text-sm  
 }
 
 .form-input-field{
@@ -24,7 +24,7 @@
 
 ::-webkit-scrollbar {
   width: 13px;
-}
+} 
 
 ::-webkit-scrollbar-track {
   background: #fff;
