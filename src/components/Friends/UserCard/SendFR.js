@@ -13,8 +13,6 @@ function SendFR({
       profile.friendRequests.push(user._id);
     }
 
-    console.log(profile.friendRequests)
-
     fetch(`http://localhost:3000/user/${profile._id}/sendFR`, {
       method: 'PATCH',
       headers: new Headers({

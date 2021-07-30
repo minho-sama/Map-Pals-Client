@@ -5,6 +5,7 @@ import {BiMinus, BiRightArrowAlt} from 'react-icons/bi'
 import {useForm} from 'react-hook-form'
 import useFetch from '../../customHooks/useFetch'
 import deleteThis from '../../../assets/default-avatar.jpg'
+import DefaultAvatar from '../../../assets/default-avatar.jpg'
 
 function CommentSection({user, token, notifyError, currentMarker}) {
 
@@ -86,6 +87,10 @@ function CommentSection({user, token, notifyError, currentMarker}) {
         setRefreshComments(!refreshComments)
     }
 
+    const setDefaultAvatar = (e) => {
+        e.target.src = DefaultAvatar
+      }
+
     return (
         <section className = "border-t-2 border-grey-700 mt-5 py-2"> 
          <div className = "flex items-center">
@@ -129,8 +134,8 @@ function CommentSection({user, token, notifyError, currentMarker}) {
         { 
             comments && comments.map(comment => {
                 return (
-                  <div className = "flex items-center my-7 group" key = {comment._id}>
-                    <img src = {deleteThis} alt = "profpic" className = 'w-6 rounded-full'/>
+                  <div className = "flex gap-2 items-center my-7 group" key = {comment._id}>
+                    <img src={`${comment.user.imgUrl}`} onError = {setDefaultAvatar} alt="profile-pic" className="w-6 rounded-full shadow-lg"/>
                     <div className = "bg-blue-100 rounded-lg shadow-sm p-2 pl-3 my-2 flex flex-col w-full relative" >
                         <h1 className = 'text-xs font-semibold text-fb-blue-light' >
                             {comment.user.username}

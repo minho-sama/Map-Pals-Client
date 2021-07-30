@@ -82,7 +82,7 @@ function LikeMarkDel({user, token, notifyDeleted, notifyError, currentMarker, re
     }
 
   return (
-    <div className="flex w-full mb-2">
+    <div className="flex w-full mb-3">
       <h1 className="text-2xl font-semibold text-fb-blue-light w-full">
         {currentMarker.name}
       </h1>

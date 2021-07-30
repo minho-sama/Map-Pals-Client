@@ -14,8 +14,9 @@ function Dashboard() {
   const {user} = useContext(UserContext)
   let history = useHistory()
 
-  //fetching markers //HANDLE ERROR WITH TOASTIFY
-  const {data:allMarkers, error, refresh:refreshMarkers, setRefresh:setRefreshMarkers} = useFetch('http://localhost:3000/markers')
+  //fetching markers
+  //only FRIENDS' markers (and own markers)
+  const {data:allMarkers, error, refresh:refreshMarkers, setRefresh:setRefreshMarkers} = useFetch(`http://localhost:3000/markers/user/friends/${user._id}`)
 
   useEffect(() => console.log(allMarkers), [allMarkers])
 

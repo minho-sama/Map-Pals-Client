@@ -70,7 +70,11 @@ function Signup() {
                 )}
                 {errPsw.length > 0 && <span className = "form-err-msg">{errPsw}</span>}
         </div>
-
+        <div className = "flex flex-col my-5">
+            <label>Profile picture URL (OPTIONAL):</label>
+            <input  autoComplete="off" className = "form-input-field"
+            {...register('imgUrl')}/>
+        </div>
         <button className = "bg-green-400 mt-3">sign up</button>
       </form>
     </section>

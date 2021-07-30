@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {FaMapMarked} from 'react-icons/fa'
 import {Link, useHistory, useLocation} from 'react-router-dom';
 import {UserContext, TokenContext} from '../App'
-import useFetch from '../customHooks/useFetch'
+import DefaultAvatar from '../../assets/default-avatar.jpg'
 
 function Navbar() {
 
@@ -21,7 +21,11 @@ function Navbar() {
 
   const decideBorder = (route) => {
     if(route === location.pathname){
-      return ' border-l-2 border-fb-blue'
+      if(route === '/profile'){
+        return ' border-l-2 border-fb-blue flex flex-row'
+      } else{
+        return 'border-l-2 border-fb-blue'
+      }
     }
   }
 
@@ -48,7 +52,11 @@ function Navbar() {
     if(user){
       verifyToken()
     }
-  }, [user])
+  }, [user]) 
+
+  const setDefaultAvatar = (e) => {
+    e.target.src = DefaultAvatar
+  }
 
   return (
     <nav className="bg-fb-blue-light text-white p-2 flex items-center px-4">
@@ -70,7 +78,10 @@ function Navbar() {
                   </Link>
                 </li>
                 <li className = {decideBorder('/profile')}>
-                  <Link to = "/profile">{user.username} IMG</Link>
+                  <Link to = "/profile" className = 'flex gap-2 items-center'>
+                    <img src={`${user.imgUrl}`} onError = {setDefaultAvatar} alt = "profile-pic" className = "w-6 rounded-full shadow-lg"/>
+                    <p>{user.username} </p>
+                  </Link>
                 </li>
                 <li>
                   <button onClick = {handleLogout}>Log Out</button>

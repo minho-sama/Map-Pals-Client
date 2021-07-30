@@ -10,8 +10,6 @@ function AcceptFR({
   token
 }) {
 
-  console.log('setUser: ' + setUser)
-
   const acceptFriendRequest = () => {
     //ide majd kis validation
 
@@ -36,6 +34,7 @@ function AcceptFR({
       .then((res) => res.json())
       .then((data) => {
         if (data.err) {
+          console.log(data.err)
           notifyError();
         } else { 
           setRefreshUsers(!refreshUsers);

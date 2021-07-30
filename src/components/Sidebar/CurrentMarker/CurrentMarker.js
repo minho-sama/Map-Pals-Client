@@ -5,6 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MarkerControllers from './LikeMarkDel'
 import DefaultCity from '../../../assets/defaultCity.jpg'
+import DefaultAvatar from '../../../assets/default-avatar.jpg'
+import {Link} from 'react-router-dom'
 
 function CurrentMarker({currentMarker, refreshMarkers, setRefreshMarkers, setCurrentMarker}) {
 
@@ -26,6 +28,10 @@ function CurrentMarker({currentMarker, refreshMarkers, setRefreshMarkers, setCur
       draggable: true,
       progress: undefined,
     });
+
+    const setDefaultAvatar = (e) => {
+      e.target.src = DefaultAvatar
+    }
 
     return (
         <>
@@ -49,8 +55,12 @@ function CurrentMarker({currentMarker, refreshMarkers, setRefreshMarkers, setCur
 
                 {/* ez az egész legyen majd link! */}
                 <div className = "text-xs flex gap-2 justify-end text-gray-600">
-                  <h2>{currentMarker.user.username} minhImg</h2> |
-                  <span>{currentMarker.post_date_formatted}</span>
+                  <Link to = {`/user/${currentMarker.user._id}`} className = "flex items-center gap-1">
+                    <h2>{currentMarker.user.username}</h2>
+                    <img src={`${currentMarker.user.imgUrl}`} onError = {setDefaultAvatar} alt = "profile-pic" className = "w-6 rounded-full shadow-md"/>
+                    <p>|</p>
+                  </Link>
+                  <span className = "flex items-center">{currentMarker.post_date_formatted}</span>
                 </div>
 
                 {/*COMMENTS */}

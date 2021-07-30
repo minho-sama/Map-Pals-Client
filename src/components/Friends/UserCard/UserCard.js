@@ -26,10 +26,10 @@ function UserCard(props) {
     e.target.src = DefaultAvatar
   }
 
-  return (
-      <div className="bg-blue-300 w-full my-7 flex items-center p-5 gap-5 rounded shadow-smd transition transform hover:translate-x-1.5">
+  return ( 
+      <div className="bg-blue-200 w-full my-7 flex items-center p-5 gap-5 rounded shadow-smd transition transform hover:translate-x-1.5">
         <Link to = {`/user/${profile._id}`} className = "flex items-center gap-5">
-          <img src={`${profile.imgUrl}`} onError = {setDefaultAvatar} alt="profile pic" className="w-8 rounded-full"/>
+          <img src={`${profile.imgUrl}`} onError = {setDefaultAvatar} alt="profile pic" className="w-8 rounded-full shadow-lg"/>
           <h1>{profile.username}</h1>
         </Link>
         {friendAction}
