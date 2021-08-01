@@ -37,7 +37,7 @@ function Dashboard() {
     draggable: true,
     progress: undefined,
   });
-  if(error) {
+  if(error) { 
     notifyServerErr()
   }
 

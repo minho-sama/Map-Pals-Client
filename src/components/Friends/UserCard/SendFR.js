@@ -1,4 +1,5 @@
 import React from 'react'
+import {FaUserPlus} from 'react-icons/fa'
 
 function SendFR({
   profile,
@@ -35,7 +36,8 @@ function SendFR({
 
   return (
     <div className="friendController" onClick={sendFriendRequest}>
-      Send friend request
+      <p>Add</p>
+      <FaUserPlus/>
     </div>
   );
 }

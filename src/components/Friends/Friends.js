@@ -34,7 +34,7 @@ function Friends() {
     <>
       <ToastContainer  position = "top-center" autoClose = {3000} hideProgressBar newestOnTop={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
       <article className="flex-grow flex flex-col p-4 items-center">
-          <div className = "w-full md:w-1/2">
+          <div className = "w-full md:w-4/5">
             <section className = "w-full p-2 flex items-center justify-center">
               <div className = "text-black p-1 text-sm w-1/2 flex items-center">
                 <input
@@ -57,20 +57,22 @@ function Friends() {
               }
             </section>
             <h1 className = "text-gray-500 italic w-full border-t-2 border-gray-300 pt-2">MapPals community:</h1>
-            {
-              filteredUsers && filteredUsers.length > 0 ? filteredUsers.map(profile => {
-               return <UserCard 
-                        key = {profile._id}
-                        user = {user}
-                        setUser = {setUser}
-                        profile = {profile} 
-                        token = {token} 
-                        notifyError = {notifyError}
-                        refreshUsers = {refreshUsers}
-                        setRefreshUsers = {setRefreshUsers}
-                      />
-              }) : <p className = "italic text-gray-600 mt-10">there is no user "{searchValue}"</p>
-            }
+            <div className = "flex flex-wrap mt-6 md:ml-4 lg:ml-12 gap-2"> 
+               {
+                 filteredUsers && filteredUsers.length > 0 ? filteredUsers.map(profile => {
+                 return <UserCard 
+                           key = {profile._id}
+                           user = {user}
+                           setUser = {setUser}
+                           profile = {profile} 
+                           token = {token} 
+                           notifyError = {notifyError}
+                           refreshUsers = {refreshUsers}
+                           setRefreshUsers = {setRefreshUsers}
+                         />
+                 }) : <p className = "italic text-gray-600 mt-10">there is no user "{searchValue}"</p>
+               }
+            </div>
           </div>
      </article>
     </>

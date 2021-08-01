@@ -19,7 +19,7 @@
 }
 
 .friendController{
-  @apply text-sm cursor-pointer w-full flex justify-end
+  @apply cursor-pointer text-xs flex items-center gap-2 p-1 text-white font-bold bg-fb-blue rounded-sm float-right
 }
 
 ::-webkit-scrollbar {

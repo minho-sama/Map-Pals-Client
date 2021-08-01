@@ -1,7 +1,7 @@
 import React from 'react';
-import {FaUserCheck}  from 'react-icons/fa'
+import {FaUserTimes} from 'react-icons/fa'
 
-function AcceptFR({
+function DeclineFR({
   profile,
   user,
   setUser,
@@ -11,25 +11,18 @@ function AcceptFR({
   token
 }) {
 
-  const acceptFriendRequest = () => {
-    //ide majd kis validation
+  const declineFriendRequest = () => {
 
-    user.friends.push(profile._id);
     const filteredFriendRequqests = user.friendRequests.filter(requester => requester._id !== String(profile._id))
-    profile.friends.push(user._id);
 
-    console.log(filteredFriendRequqests)
-
-    fetch(`http://localhost:3000/user/${user._id}/${profile._id}`, {
+    fetch(`http://localhost:3000/user/${user._id}/${profile._id}/decline`, {
       method: 'PATCH',
       headers: new Headers({
         Authorization: `token ${token}`,
         'Content-Type': 'application/json',
       }),
       body: JSON.stringify({ 
-        friendsReceiver: user.friends,
-        friendRequestsReceiver: filteredFriendRequqests,
-        friendsSender: profile.friends,
+        friendRequestsReceiver: filteredFriendRequqests
       }),
     })
       .then((res) => res.json())
@@ -45,13 +38,13 @@ function AcceptFR({
   };
 
   return (
-    <div className="text-xs cursor-pointer flex items-center justify-end font-bold text-white bg-green-500 gap-1 p-1 rounded-sm" 
-      onClick={acceptFriendRequest}
+    <div className="text-xs cursor-pointer flex items-center justify-end font-bold text-white bg-red-500 gap-1 p-1 rounded-sm" 
+      onClick={declineFriendRequest}
       >
-      <p>Accept</p>
-      <FaUserCheck/>
+      <p>Decline</p>
+      <FaUserTimes/>
     </div>
   );
 }
 
-export default AcceptFR;
+export default DeclineFR;

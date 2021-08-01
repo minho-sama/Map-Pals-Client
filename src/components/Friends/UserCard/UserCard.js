@@ -2,7 +2,9 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import DefaultAvatar from '../../../assets/default-avatar.jpg'
 import AcceptFR from './AcceptFR'
+import DeclineFR from './DeclineFR';
 import SendFR from './SendFR'
+import {FaUserCheck, FaUserClock} from 'react-icons/fa'
  
 function UserCard(props) {
   const {profile, user} = props
@@ -13,23 +15,29 @@ function UserCard(props) {
   if(user?._id === profile._id){
     friendAction = null
   } else if(decideAction(user?.friendRequests, profile._id)){
-      friendAction = <AcceptFR {...props}/>
+      friendAction = <div className = "flex flex-col md:flex-row gap-2 justify-end">
+                      <DeclineFR {...props}/>
+                      <AcceptFR {...props}/>
+                    </div>
   } else if(decideAction(user?.friends, profile._id)){
-      friendAction = <div className = "friendController"> Friends PIPA</div>
+      friendAction = <div className = "friendController"> Friends <FaUserCheck/></div>
   } else if(decideAction(profile.friendRequests, user?._id)){
-      friendAction = <div className = "friendController">friend request sent</div>
+      friendAction = <div className = "friendController">
+                        <p>Request sent</p>
+                        <FaUserClock/>
+                      </div>
   } else{
       friendAction = <SendFR {...props}/>
   }
-
+ 
   const setDefaultAvatar = (e) => {
     e.target.src = DefaultAvatar
   }
 
   return ( 
-      <div className="bg-blue-200 w-full my-7 flex items-center p-5 gap-5 rounded shadow-smd transition transform hover:translate-x-1.5">
-        <Link to = {`/user/${profile._id}`} className = "flex items-center gap-5">
-          <img src={`${profile.imgUrl}`} onError = {setDefaultAvatar} alt="profile pic" className="w-8 rounded-full shadow-lg"/>
+      <div className="w-full bg-blue-100 md:1/2 lg:w-3/10 my-3 flex items-center p-5 rounded shadow-smd transition transform hover:translate-y-1.5">
+        <Link to = {`/user/${profile._id}`} className = "flex items-center gap-3 w-full">
+          <img src={`${profile.imgUrl}`} onError = {setDefaultAvatar} alt="profile pic" className="w-8 rounded-full shadow-md"/>
           <h1>{profile.username}</h1>
         </Link>
         {friendAction}

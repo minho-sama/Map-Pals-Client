@@ -52,6 +52,10 @@ function Navbar() {
     if(user){
       verifyToken()
     }
+    if(user && !token){
+      removeUser()
+      history.push('/login')
+    }
   }, [user]) 
 
   const setDefaultAvatar = (e) => {
@@ -78,7 +82,7 @@ function Navbar() {
                   </Link>
                 </li>
                 <li className = {decideBorder('/profile')}>
-                  <Link to = "/profile" className = 'flex gap-2 items-center'>
+                  <Link to = {`/profile/${user._id}`} className = 'flex gap-2 items-center'>
                     <img src={`${user.imgUrl}`} onError = {setDefaultAvatar} alt = "profile-pic" className = "w-6 rounded-full shadow-lg"/>
                     <p>{user.username} </p>
                   </Link>
