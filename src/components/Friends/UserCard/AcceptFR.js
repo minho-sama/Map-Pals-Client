@@ -45,7 +45,7 @@ function AcceptFR({
   };
 
   return (
-    <div className="text-xs cursor-pointer flex items-center justify-end font-bold text-white bg-green-500 gap-1 p-1 rounded-sm" 
+    <div className="text-xs cursor-pointer flex items-center justify-end font-bold text-white bg-green-custom-darker hover:bg-green-custom gap-1 p-1 rounded-sm" 
       onClick={acceptFriendRequest}
       >
       <p>Accept</p>

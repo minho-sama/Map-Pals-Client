@@ -35,7 +35,7 @@ function SendFR({
   };
 
   return (
-    <div className="friendController" onClick={sendFriendRequest}>
+    <div className="friendController hover:bg-blue-600" onClick={sendFriendRequest}>
       <p>Add</p>
       <FaUserPlus/>
     </div>

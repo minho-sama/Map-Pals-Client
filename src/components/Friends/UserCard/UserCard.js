@@ -23,7 +23,7 @@ function UserCard(props) {
       friendAction = <div className = "friendController"> Friends <FaUserCheck/></div>
   } else if(decideAction(profile.friendRequests, user?._id)){
       friendAction = <div className = "friendController">
-                        <p>Request sent</p>
+                        <p>Sent</p>
                         <FaUserClock/>
                       </div>
   } else{
@@ -35,10 +35,10 @@ function UserCard(props) {
   }
 
   return ( 
-      <div className="w-full bg-blue-100 md:1/2 lg:w-3/10 my-3 flex items-center p-5 rounded shadow-smd transition transform hover:translate-y-1.5">
-        <Link to = {`/user/${profile._id}`} className = "flex items-center gap-3 w-full">
+      <div className="w-full bg-blue-100 md:1/2 lg:w-3/10 my-3 flex items-center p-5 rounded shadow-smd transition transform hover:bg-blue-200">
+        <Link to = {`/profile/${profile._id}`} className = "flex items-center gap-3 w-full">
           <img src={`${profile.imgUrl}`} onError = {setDefaultAvatar} alt="profile pic" className="w-8 rounded-full shadow-md"/>
-          <h1>{profile.username}</h1>
+          <h1 className = "font-semibold">{profile.username}</h1>
         </Link>
         {friendAction}
       </div>

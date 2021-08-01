@@ -68,7 +68,7 @@ function Navbar() {
       <FaMapMarked className = "mx-2 w-4"/>
 
         {user ?
-          <ul className = "navbar text-sm md:text-base justify-end items-center flex w-full gap-6">
+          <ul className = "navbar text-sm md:text-base justify-end items-center flex w-full gap-6 font-semibold">
                 <li className = {decideBorder('/map')}>
                  <Link to = '/map' className = "text-center">The Map</Link>
                 </li>
@@ -91,11 +91,11 @@ function Navbar() {
                   <button onClick = {handleLogout}>Log Out</button>
                 </li>
           </ul>
-          :<ul className = " text-sm md:text-base justify-end items-center flex w-full gap-6">
-            <li>
+          :<ul className = " text-sm md:text-base justify-end items-center flex w-full gap-6 font-semibold">
+            <li className = "transition hover:text-gray-100">
               <Link to = '/login' className = "border-transparent">Log in</Link>
             </li>
-            <li>
+            <li className = "transition hover:text-gray-100">
               <Link to= "/signup" className = "border-transparent">Sign Up</Link>
             </li>
           </ul>

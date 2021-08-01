@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import useUser from './customHooks/useUser'
 import useToken from './customHooks/useToken'
 import Friends from './Friends/Friends'
+import ProfilePage from './Profile/ProfilePage'
 
 export const UserContext = React.createContext()
 export const TokenContext = React.createContext()
@@ -39,6 +40,9 @@ function App() {
             </Route>
             <Route path = "/friends">
               <Friends/>
+            </Route>
+            <Route path = "/profile/:id">
+              <ProfilePage/>
             </Route>
           </Switch>
           <Footer />

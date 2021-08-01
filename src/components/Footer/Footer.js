@@ -3,7 +3,7 @@ import {GoMarkGithub} from 'react-icons/go'
 
 function Footer() {
   return (
-    <footer className="text-sm p-1 text-center bg-fb-blue-light text-white">
+    <footer className="text-sm p-1 text-center bg-fb-blue-light text-white font-semibold">
         <a href = "https://github.com/minho-sama/Map-Pals-Client" 
           target = "_blank" rel="noreferrer"
           className = "flex gap-2 items-center justify-end px-2">

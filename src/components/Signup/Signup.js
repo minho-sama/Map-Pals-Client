@@ -41,13 +41,13 @@ function Signup() {
 
     //mingLength: 3 (username es password is!)
     return (
-    <section className="w-full h-full flex justify-center">
-      <form className="flex flex-col p-5 self-center w-4/5 md:w-2/5 lg:w-3/10 rounded-sm shadow-md min-h-3/4 justify-evenly"
+    <section className="w-full h-full flex justify-center bg-gray-100">
+      <form className="bg-white flex flex-col p-5 self-center w-4/5 md:w-2/5 lg:w-3/10 rounded-sm shadow-md min-h-3/4 items-center justify-center"
         onSubmit={handleSubmit(onSubmit)}>
-        <h1 className = "text-center">Join to MapPals</h1>
-        <div className = "flex flex-col my-3">
-            <label>Create Username:</label>
-            <input  className="form-input-field" 
+        <h1 className = "text-center text-xl mb-5">Join to MapPals</h1>
+        <div className = "flex flex-col my-2 w-full items-center">
+            <input  className="form-input-field focus-outline-blue" 
+                placeholder = "Create Username"
                 {...register('username',{required: true, minLength:3})}/>
                     {errors.username?.type === 'required' && (
                         <span className="form-err-msg">username is required</span>
@@ -58,9 +58,8 @@ function Signup() {
                     {/*errors from server e.g. taken username */}
                     {errUsername.length > 0 && <span className = "form-err-msg">{errUsername}</span>}
         </div>
-        <div className = "flex flex-col my-5">
-            <label>Create Password:</label>
-            <input type="password" autoComplete="off" className = "form-input-field"
+        <div className = "flex flex-col my-2 w-full items-center">
+            <input type="password" autoComplete="off" placeholder = "Create Password" className = "form-input-field focus-outline-blue"
             {...register('password', {required: true, minLength:3})}/>
                 {errors.password?.type === 'required' && (
                     <span className="form-err-msg">password is required</span>
@@ -70,12 +69,13 @@ function Signup() {
                 )}
                 {errPsw.length > 0 && <span className = "form-err-msg">{errPsw}</span>}
         </div>
-        <div className = "flex flex-col my-5">
-            <label>Profile picture URL (OPTIONAL):</label>
-            <input  autoComplete="off" className = "form-input-field"
+        <div className = "flex flex-col my-2 w-full items-center focus-outline-blue">
+            <input  autoComplete="off" className = "form-input-field" placeholder = "Profile Image (OPTIONAL)"
             {...register('imgUrl')}/>
         </div>
-        <button className = "bg-green-400 mt-3">sign up</button>
+        <button className = "bg-green-custom mt-3 text-white w-1/2 p-3 rounded-sm font-sm text-lg shadow-md transition hover:bg-green-custom-darker">
+          Sign Up
+          </button>
       </form>
     </section>
     )

@@ -38,7 +38,7 @@ function DeclineFR({
   };
 
   return (
-    <div className="text-xs cursor-pointer flex items-center justify-end font-bold text-white bg-red-500 gap-1 p-1 rounded-sm" 
+    <div className="text-xs cursor-pointer flex items-center justify-end font-bold text-white bg-red-500 hover:bg-red-600 gap-1 p-1 rounded-sm" 
       onClick={declineFriendRequest}
       >
       <p>Decline</p>

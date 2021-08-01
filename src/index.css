@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .navbar li{
-  @apply border-l-2 hover:border-fb-blue transition px-2
+  @apply border-l-2 hover:border-fb-blue transition px-2 hover:text-gray-100
 }
  
 .form-err-msg{
@@ -11,7 +11,7 @@
 }
 
 .form-input-field{
-  @apply rounded-sm border-2 border-gray-900 p-3
+  @apply rounded-md p-3 w-2/3 border-2 border-gray-100
 }
 
 .focus-outline-blue{
