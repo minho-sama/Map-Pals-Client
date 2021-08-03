@@ -68,7 +68,7 @@ function Navbar() {
       <FaMapMarked className = "mx-2 w-4"/>
 
         {user ?
-          <ul className = "navbar text-sm md:text-base justify-end items-center flex w-full gap-6 font-semibold">
+          <ul className = "navbar text-xs md:text-sm md:text-base justify-end items-center flex w-full gap-3 md:gap-6 font-semibold">
                 <li className = {decideBorder('/map')}>
                  <Link to = '/map' className = "text-center">The Map</Link>
                 </li>

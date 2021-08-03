@@ -7,11 +7,11 @@
 }
  
 .form-err-msg{
-  @apply text-red-500 text-sm  
+  @apply text-red-500 text-sm self-start
 }
 
 .form-input-field{
-  @apply rounded-md p-3 w-2/3 border-2 border-gray-100
+  @apply rounded-sm p-3 w-full bg-gray-100
 }
 
 .focus-outline-blue{
@@ -20,6 +20,19 @@
 
 .friendController{
   @apply cursor-pointer text-xs flex items-center gap-2 p-1 text-white font-bold bg-fb-blue rounded-sm float-right
+} 
+
+.glassmorphism-lighter{
+  background: rgba( 182, 182, 188, 0.15 );
+  backdrop-filter: blur( 1.5px );
+  -webkit-backdrop-filter: blur( 1.5px );
+  border-radius: 10px;
+}
+
+.blue-underline-input:focus{
+  outline: none !important;
+  border-bottom: 2px solid #1877f2;
+  caret-color: #1877f2;
 }
 
 ::-webkit-scrollbar {

@@ -15,7 +15,7 @@ function UserCard(props) {
   if(user?._id === profile._id){
     friendAction = null
   } else if(decideAction(user?.friendRequests, profile._id)){
-      friendAction = <div className = "flex flex-col md:flex-row gap-2 justify-end">
+      friendAction = <div className = "flex flex-row gap-2 justify-end">
                       <DeclineFR {...props}/>
                       <AcceptFR {...props}/>
                     </div>
@@ -35,7 +35,7 @@ function UserCard(props) {
   }
 
   return ( 
-      <div className="w-full bg-blue-100 md:1/2 lg:w-3/10 my-3 flex items-center p-5 rounded shadow-smd transition transform hover:bg-blue-200">
+      <div className="w-full bg-blue-100 md:w-2/5 xl:w-3/10 my-3 flex items-center p-5 rounded shadow-smd transition transform hover:bg-blue-200">
         <Link to = {`/profile/${profile._id}`} className = "flex items-center gap-3 w-full">
           <img src={`${profile.imgUrl}`} onError = {setDefaultAvatar} alt="profile pic" className="w-8 rounded-full shadow-md"/>
           <h1 className = "font-semibold">{profile.username}</h1>

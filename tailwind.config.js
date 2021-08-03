@@ -17,8 +17,10 @@ module.exports = {
       colors:{
         'fb-blue': '#3b5998',
         'fb-blue-light':'#1877f2',
+        'fb-blue-lighter':'#3889F1',
         'green-custom': "#66CA45",
-        'green-custom-darker':'#55B935'
+        'green-custom-darker':'#55B935',
+        'gold': '#d4b31c'
       },
       minHeight: {
         '0': '0',

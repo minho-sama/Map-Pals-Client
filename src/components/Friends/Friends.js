@@ -43,7 +43,7 @@ function Friends() {
                   onChange = {(e) => setSearchValue(e.target.value)}
                   value = {searchValue}
                   placeholder = {`Search MapPals`}
-                  className = "border-b-2 border-fb-blue rounded-sm outline-none w-full pl-2"/>
+                  className = "border-b-2 border-fb-blue rounded-sm outline-none w-full pl-2 blue-underline-input"/>
                   <BsSearch className = "text-gray-400 -ml-4 mb-1"/>
               </div>
             </section>

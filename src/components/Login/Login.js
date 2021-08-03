@@ -19,9 +19,9 @@ function Login() {
     setShowNotification(location.state?.showNotification)
   }, [location]);
 
-  const notify = () => toast.success('Signed up successfully!', {
+  const notify = () => toast.success('Signed up successfully! You can now Login to your account', {
     position: "top-center",
-    autoClose: 5000,
+    autoClose: 7000,
     hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,
@@ -51,7 +51,7 @@ function Login() {
             setErrUsername(username)
             setErrPsw(password)
             console.log(errPsw, errUsername)
-        }else{
+        } else{
             addToken(data.token)
             addUser(data.user)
             history.push('/map')
@@ -71,27 +71,27 @@ function Login() {
         pauseOnHover
         />
 
-      <form className="flex flex-col items-center p-5 self-center w-4/5 md:w-2/5 lg:w-3/10 rounded-md shadow-md min-h-3/4 justify-center bg-white"
+      <form className="flex flex-col items-center p-5 self-center w-4/5 md:w-2/5 lg:w-3/10 rounded-lg shadow-md min-h-3/4 justify-center bg-white"
         onSubmit={handleSubmit(onSubmit)}>
         <h1 className = "text-center mb-12 text-xl">Login to MapPals</h1>
-        <div className = "flex flex-col my-3 w-full items-center">
-            <input className="form-input-field focus-outline-blue" defaultValue = {location.state?.username} placeholder = "Username"
+        <div className = "flex flex-col my-3 w-2/3 items-center">
+            <input className="form-input-field blue-underline-input" defaultValue = {location.state?.username} placeholder = "Username"
                 {...register('username',{required: true,})}/>
                     {errors.username?.type === 'required' && (
                     <span className="form-err-msg">username is required</span>
                     )}
                     {errUsername.length > 0 && <span className = "form-err-msg">{errUsername}</span>}
         </div>
-        <div className = "flex flex-col my-5 w-full items-center">
-            <input type="password" autoComplete="off" className = "form-input-field focus-outline-blue" placeholder = "Password"
+        <div className = "flex flex-col my-5 w-2/3 items-center">
+            <input type="password" autoComplete="off" className = "form-input-field blue-underline-input" placeholder = "Password"
             {...register('password', {required: true})}/>
                 {errors.password?.type === 'required' && (
                 <span className="form-err-msg">password is required</span>
                 )}
                 {errPsw.length > 0 && <span className = "form-err-msg">{errPsw}</span>}
         </div>
-
-         <button className = "bg-green-custom mt-3 text-white w-1/2 p-3 rounded-sm font-sm text-xl shadow-md transition hover:bg-green-custom-darker" >
+ 
+         <button className = "bg-green-custom mt-3 text-white w-1/2 p-3 rounded-md font-sm text-xl shadow-md transition hover:bg-green-custom-darker" >
           Login
           </button>
       </form>
