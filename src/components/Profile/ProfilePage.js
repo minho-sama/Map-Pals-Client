@@ -1,10 +1,13 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext} from 'react'
 import { UserContext, TokenContext } from '../App';
 import useFetch from '../customHooks/useFetch';
 import {useParams} from 'react-router-dom'
 import DefaultAvatar from '../../assets/default-avatar.jpg'
+import Profile404 from './Profile404';
 import ProfileInfo from './ProfileInfo/ProfileInfo'
-import ProfileFriends from './ProfileFriends'
+import ProfileFriends from './ProfileInfo/ProfileFriends/ProfileFriends'
+import ProfileMap from './ProfileMap/ProfileMap'
+import ProfileHeader from './ProfileHeader'
 
 function ProfilePage() {
     const {id} = useParams()
@@ -13,18 +16,18 @@ function ProfilePage() {
     const {data:userFromServer, error:userFSError, refresh:refreshUserFS, setRefresh:setRefreshUserFS} = useFetch(`http://localhost:3000/user/${id}`) //for displaying profile info!
     const {data:userMarkers} = useFetch(`http://localhost:3000/markers/user/${id}`)
 
-    //MARKEREKET is fetchelni profile szerint!
+    const [isFriends, setIsFriends] = React.useState(false)
+
+    React.useEffect(() => {
+        setIsFriends(userFromServer?.friends.some(friend => friend._id === user._id))
+    }, [user._id, userFromServer])
 
     const { token } = useContext(TokenContext);
 
+    //if user cannot be found
     if(userFSError){
-        console.log('error happened, load error components!')
-        //404 user not found PAGE
+        return <Profile404/>
     }
-
-    React.useEffect(() => {
-        console.log(userFromServer)
-    }, [userFromServer])
 
     const setDefaultImg = (e) => {
         e.target.src = DefaultAvatar
@@ -34,14 +37,10 @@ function ProfilePage() {
         <article className="flex-grow flex flex-col items-center font-semibold">
         {userFromServer && 
          <>
-           <figure className = "w-full flex flex-col items-center gap-4 bg-gray-800 text-white shadow-lg p-4 mb-6">
-             <img src = {`${userFromServer.imgUrl}`} onError = {setDefaultImg} alt = "profile img" 
-                 className = "w-48 rounded-full shadow-lg border-2 mt-2 border-white"
-             />
-             <figcaption className = "text-3xl font-semibold">
-                 {userFromServer.username}
-             </figcaption>
-           </figure> 
+           <ProfileHeader 
+              userFromServer = {userFromServer} 
+              setDefaultImg = {setDefaultImg}
+              />
            <div className = "w-full flex flex-col lg:flex-row gap-5 p-4">
              <ProfileInfo 
                 userFromServer = {userFromServer} 
@@ -50,8 +49,14 @@ function ProfilePage() {
                 refreshUserFS = {refreshUserFS}
                 setRefreshUserFS = {setRefreshUserFS}
                 />
-             <ProfileFriends/>
+             <ProfileFriends userFromServer = {userFromServer} setDefaultImg = {setDefaultImg}/>
            </div> 
+
+           {/* profile map stuff, csak akkor látható ha friendek! */}
+           {user._id === userFromServer._id || isFriends ? 
+            <ProfileMap/> : 
+            <div>To see {userFromServer.username}'s places you have to be friends</div>
+           }
          </>
         }
         </article> 

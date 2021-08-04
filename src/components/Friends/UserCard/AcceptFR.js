@@ -12,13 +12,11 @@ function AcceptFR({
 }) {
 
   const acceptFriendRequest = () => {
-    //ide majd kis validation
 
     user.friends.push(profile._id);
     const filteredFriendRequqests = user.friendRequests.filter(requester => requester._id !== String(profile._id))
     profile.friends.push(user._id);
-
-    console.log(filteredFriendRequqests)
+    const filteredFriends = [...new Set(profile.friends)]
 
     fetch(`http://localhost:3000/user/${user._id}/${profile._id}`, {
       method: 'PATCH',
@@ -29,9 +27,9 @@ function AcceptFR({
       body: JSON.stringify({ 
         friendsReceiver: user.friends,
         friendRequestsReceiver: filteredFriendRequqests,
-        friendsSender: profile.friends,
+        friendsSender: filteredFriends,
       }),
-    })
+    }) 
       .then((res) => res.json())
       .then((data) => {
         if (data.err) {

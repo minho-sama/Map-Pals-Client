@@ -42,21 +42,21 @@ function ProfileInfo({userFromServer, user, token, refreshUserFS, setRefreshUser
          ) : (
            <div className="flex gap-7 mb-5">
              <ul className="text-fb-blue-light flex flex-col gap-3">
-               <li>City: </li>
-               <li>Joined: </li>
-               <li>Bio: </li>
+               <li>CITY: </li>
+               <li>JOINED: </li>
+               <li>BIO: </li>
              </ul>
              <ul className="flex flex-col gap-3 justify-center">
                <li className = "capitalize">
                  {userFromServer.city?.length > 0 ? 
                   userFromServer.city :
-                  <p className = "text-gray-300 italic font-normal">Somewhere nice</p>  
+                  <p className = "text-gray-500 italic font-normal">Somewhere nice</p>  
                  }
                 </li>
                <li className = "">
                  {userFromServer.bio?.length > 0 ? 
                   userFromServer.bio :
-                  <p className = "text-gray-300 italic text-center font-normal">{userFromServer.username} has no bio yet</p>  
+                  <p className = "text-gray-500 italic text-center font-normal">{userFromServer.username} has no bio yet</p>  
                  }
                </li>
                <li>{userFromServer.join_date_formatted} </li>
