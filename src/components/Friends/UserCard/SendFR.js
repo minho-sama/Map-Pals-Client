@@ -5,7 +5,7 @@ function SendFR({
   profile,
   user,
   notifyError,
-  refreshUsers,
+  refreshUsers, 
   setRefreshUsers, 
   token
 }) {

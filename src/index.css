@@ -22,11 +22,15 @@
   @apply cursor-pointer text-xs flex items-center gap-2 p-1 text-white font-bold bg-fb-blue rounded-sm float-right
 } 
 
-.glassmorphism-lighter{
+.glassmorphism-light{
   background: rgba( 182, 182, 188, 0.15 );
   backdrop-filter: blur( 1.5px );
   -webkit-backdrop-filter: blur( 1.5px );
-  border-radius: 10px;
+  border-radius: 3px;
+}
+
+.overlay-shadow{
+  box-shadow: 0 0 0 1400px rgba(0, 0, 0, 0.5);
 }
 
 .blue-underline-input:focus{

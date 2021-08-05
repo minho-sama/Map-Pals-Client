@@ -6,6 +6,9 @@ module.exports = {
       custom: ['Rubik', 'sans-serif']
     },
     extend: {
+      backgroundImage: theme => ({
+        'berlin-map':'url(../src/assets/blur-map.png)'
+      }),
       height: {
         "9/10": "90%",
       },
@@ -28,6 +31,8 @@ module.exports = {
         '1/2': '50%',
         '3/4': '75%',
         'full': '100%',
+        '150':'150px',
+        '300':'300px'
        },
       maxHeight: {
         '90':'90vh'

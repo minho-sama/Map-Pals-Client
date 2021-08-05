@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory} from "react-router-dom";
+import Earth from '../../assets/worldwide.svg'
 
 function Signup() {
     const {register, handleSubmit, formState: { errors }} = useForm();
@@ -44,7 +45,10 @@ function Signup() {
     <section className="w-full h-full flex justify-center bg-gray-100">
       <form className="bg-white flex flex-col p-5 self-center w-4/5 md:w-2/5 lg:w-3/10 rounded-lg shadow-md min-h-3/4 items-center justify-center"
         onSubmit={handleSubmit(onSubmit)}>
-        <h1 className = "text-center text-xl mb-5">Join to MapPals</h1>
+        <h1 className = "text-center text-xl mb-2">
+            Join to MapPals
+        </h1>
+        <img src = {Earth} alt = "logo earth" className = "w-32 mb-3"/>
         <div className = "flex flex-col my-2 w-2/3 items-center">
             <input  className="form-input-field blue-underline-input" 
                 autoComplete = "off"

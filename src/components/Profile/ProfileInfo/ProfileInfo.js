@@ -28,7 +28,7 @@ function ProfileInfo({userFromServer, user, token, refreshUserFS, setRefreshUser
          draggable
          pauseOnHover
        />
-       <section className="p-4 md:self-start border-l-2 border-fb-blue-light w-full lg:w-1/2">
+       <section className="p-4 md:self-start border-l-2 border-r-2 border-fb-blue-light w-full lg:w-1/2">
          {isUpdateMode ? (
            <UpdateForm 
             setIsUpdateMode = {setIsUpdateMode} 
@@ -43,8 +43,8 @@ function ProfileInfo({userFromServer, user, token, refreshUserFS, setRefreshUser
            <div className="flex gap-7 mb-5">
              <ul className="text-fb-blue-light flex flex-col gap-3">
                <li>CITY: </li>
-               <li>JOINED: </li>
                <li>BIO: </li>
+               <li>JOINED: </li>
              </ul>
              <ul className="flex flex-col gap-3 justify-center">
                <li className = "capitalize">
@@ -72,10 +72,6 @@ function ProfileInfo({userFromServer, user, token, refreshUserFS, setRefreshUser
          ) : (
            null
          )}
- 
-         {
-             user._id !== userFromServer._id && <div>send fr meg stb components!</div>
-         }
        </section>
       </>
     );

@@ -65,7 +65,7 @@ function Navbar() {
   return (
     <nav className="bg-fb-blue-light text-white p-2 flex items-center px-4">
       <a href = "/" className="text-base md:text-2xl">MapPals</a>
-      <FaMapMarked className = "mx-2 w-4"/>
+      <FaMapMarked className = "mx-2 w-5"/>
 
         {user ?
           <ul className = "navbar text-xs md:text-sm md:text-base justify-end items-center flex w-full gap-3 md:gap-6 font-semibold">

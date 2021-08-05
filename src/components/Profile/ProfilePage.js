@@ -8,19 +8,21 @@ import ProfileInfo from './ProfileInfo/ProfileInfo'
 import ProfileFriends from './ProfileInfo/ProfileFriends/ProfileFriends'
 import ProfileMap from './ProfileMap/ProfileMap'
 import ProfileHeader from './ProfileHeader'
+import FriendCard from './ProfileInfo/ProfileFriends/FriendCard'
+import { FaMapMarked } from 'react-icons/fa';
 
 function ProfilePage() {
     const {id} = useParams()
 
     const {user} = useContext(UserContext) //only for conditional rendering! 
     const {data:userFromServer, error:userFSError, refresh:refreshUserFS, setRefresh:setRefreshUserFS} = useFetch(`http://localhost:3000/user/${id}`) //for displaying profile info!
-    const {data:userMarkers} = useFetch(`http://localhost:3000/markers/user/${id}`)
 
     const [isFriends, setIsFriends] = React.useState(false)
+    const [isModalOpen, setIsModalOpen] = React.useState(false)
 
     React.useEffect(() => {
         setIsFriends(userFromServer?.friends.some(friend => friend._id === user._id))
-    }, [user._id, userFromServer])
+    }, [user?._id, userFromServer])
 
     const { token } = useContext(TokenContext);
 
@@ -49,14 +51,46 @@ function ProfilePage() {
                 refreshUserFS = {refreshUserFS}
                 setRefreshUserFS = {setRefreshUserFS}
                 />
-             <ProfileFriends userFromServer = {userFromServer} setDefaultImg = {setDefaultImg}/>
+             <ProfileFriends 
+                userFromServer = {userFromServer} 
+                setDefaultImg = {setDefaultImg}
+                isModalOpen = {isModalOpen}
+                setIsModalOpen = {setIsModalOpen}
+                />
            </div> 
 
-           {/* profile map stuff, csak akkor látható ha friendek! */}
+           {/* profile map and markers, csak akkor látható ha friendek! */}
            {user._id === userFromServer._id || isFriends ? 
-            <ProfileMap/> : 
-            <div>To see {userFromServer.username}'s places you have to be friends</div>
+            <ProfileMap
+                userFromServer = {userFromServer}
+                user = {user}/> : 
+            <div className = "h-full w-full bg-berlin-map border-t-2 border-grray-300">
+                <div className = "w-full h-full backdrop-filter backdrop-blur-sm flex flex-col items-center justify-center gap-2 text text-shadow-md">
+                    <h1>To see {userFromServer.username}'s places you have to be Friends</h1>
+                    <FaMapMarked className = "text-2xl"/> 
+                </div>
+            </div>
            }
+           {
+            isModalOpen && 
+              <section 
+                className = "absolute top-1/3 overlay-shadow bg-white max-h-80 overflow-scroll p-4 rounded-sm w-4/5 md:w-1/5" >
+                {
+                 userFromServer.friends.map((friend) => {
+                     return <FriendCard key = {friend._id} 
+                                        friend = {friend} 
+                                        setDefaultImg = {setDefaultImg}
+                                        setIsModalOpen = {setIsModalOpen}
+                                        />
+                 })
+                }
+                <button
+                    className = "text-sm bg-fb-blue text-white px-2 py-1 rounded-sm float-right mr-4"
+                    onClick = {() => setIsModalOpen(false)}>
+                    close
+                </button>
+              </section>
+          }
          </>
         }
         </article> 
