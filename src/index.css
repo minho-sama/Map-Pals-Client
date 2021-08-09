@@ -22,6 +22,14 @@
   @apply cursor-pointer text-xs flex items-center gap-2 p-1 text-white font-bold bg-fb-blue rounded-sm float-right
 } 
 
+.marker-card{
+  @apply flex gap-2 items-center w-9/10 bg-gray-800 p-2 text-sm text-white cursor-pointer transition hover:bg-fb-blue-light rounded-sm
+}
+
+.marker-card-selected{
+  @apply flex gap-2 items-center w-9/10 bg-fb-blue-light p-2 text-sm text-white cursor-pointer transition rounded-sm
+}
+
 .glassmorphism-light{
   background: rgba( 182, 182, 188, 0.15 );
   backdrop-filter: blur( 1.5px );
@@ -31,6 +39,10 @@
 
 .overlay-shadow{
   box-shadow: 0 0 0 1400px rgba(0, 0, 0, 0.5);
+}
+
+.top-shadow{
+  box-shadow: 0px -4px 8px rgba(141, 140, 140, 0.25)
 }
 
 .blue-underline-input:focus{
@@ -54,7 +66,6 @@
 .text-shadow-none {
   text-shadow: none;
 }
-
 
 ::-webkit-scrollbar {
   width: 13px;

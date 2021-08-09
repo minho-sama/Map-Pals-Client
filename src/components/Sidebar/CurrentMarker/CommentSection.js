@@ -4,8 +4,8 @@ import {AiFillLike} from 'react-icons/ai'
 import {BiMinus, BiRightArrowAlt} from 'react-icons/bi'
 import {useForm} from 'react-hook-form'
 import useFetch from '../../customHooks/useFetch'
-import deleteThis from '../../../assets/default-avatar.jpg'
 import DefaultAvatar from '../../../assets/default-avatar.jpg'
+import {Link} from 'react-router-dom'
 
 function CommentSection({user, token, notifyError, currentMarker}) {
 
@@ -135,11 +135,13 @@ function CommentSection({user, token, notifyError, currentMarker}) {
             comments && comments.map(comment => {
                 return (
                   <div className = "flex gap-2 items-center my-7 group" key = {comment._id}>
-                    <img src={`${comment.user.imgUrl}`} onError = {setDefaultAvatar} alt="profile-pic" className="w-6 rounded-full shadow-lg"/>
+                    <Link to = {`/profile/${comment.user._id}`}>
+                        <img src={`${comment.user.imgUrl}`} onError = {setDefaultAvatar} alt="profile-pic" className="w-6 rounded-full shadow-lg"/>
+                    </Link>
                     <div className = "bg-blue-100 rounded-lg shadow-sm p-2 pl-3 my-2 flex flex-col w-full relative" >
-                        <h1 className = 'text-xs font-semibold text-fb-blue-light' >
+                        <Link to = {`/profile/${comment.user._id}`} className = 'text-xs font-semibold text-fb-blue-light' >
                             {comment.user.username}
-                        </h1>
+                        </Link>
                         <p>{comment.content}</p>
                         <div className = 'absolute text-xs -bottom-5'>
                             <span className = "cursor-pointer hover:text-fb-blue-light"
@@ -154,7 +156,7 @@ function CommentSection({user, token, notifyError, currentMarker}) {
                           <AiFillLike/>
                           <span>{comment.likes.length}</span>
                         </div>
-
+ 
                     </div> 
                   </div>
                 )

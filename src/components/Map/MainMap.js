@@ -3,7 +3,7 @@ import { MapContainer} from 'react-leaflet';
 import MapContent from './MapContent'
 import '../Map/GeoSearch/geosearch.css'
 
-function MainMap() {
+function MainMap() { 
 
   //default location is London
   const [latitude, setLatitude] = useState(51.505);
@@ -27,7 +27,7 @@ function MainMap() {
   //   console.log("clicked")
   // }
 
-  return (
+  return ( 
     <>
     {/* <span className = "absolute bg-red-700 bottom-0" onClick = {handleclick}> Go To Bookmarked</span> */}
     <section className="w-full h-full md:w-3/4 md:h-full ">

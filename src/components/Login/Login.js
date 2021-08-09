@@ -74,7 +74,7 @@ function Login() {
 
       <form className="flex flex-col items-center p-5 self-center w-4/5 md:w-2/5 lg:w-3/10 rounded-lg shadow-md min-h-3/4 justify-center bg-white"
         onSubmit={handleSubmit(onSubmit)}>
-        <h1 className = "text-center mb-12 text-xl flex items-center gap-2">
+        <h1 className = "text-center mb-12 text-2xl flex items-center gap-2 font-bold">
           Login to MapPals <FaMapMarked className = "pb-1 text-fb-blue-light"/>
         </h1>
         <div className = "flex flex-col my-3 w-2/3 items-center">

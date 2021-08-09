@@ -1,5 +1,7 @@
-profile page: szétszedni külön componentekbe!
-Bookmarkot megkérdezni stackoverflowon, youtube, ha az is off akkor csak külön paget csinálni hozzá
-ESETLEG: bookmarkok a sidebarban vannak?
-figyleni h minél responsiveabb legyen!
-CSinálni test accountot ami mindig restoreolja magát valahogy!! legyenek friendjei is amik viszont érintetlenek lesznek! 
+Bookmarks on map is not possible yet
+landing page: gif, tech stack with logos
+deploy api -> rewrite api endpoints in front end
+deploy to gh-pages
+fix routing on gh pages (this might be a tough one) -> not only the main routing in app.js (but all redirect and all <Link/> ? im not sure )
+upload to odin
+update gh readme both api and client

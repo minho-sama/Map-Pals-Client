@@ -79,7 +79,7 @@ function AddMarkerForm({addLat, addLng, setAddLat, setAddLng, refreshMarkers, se
              onSubmit = {handleSubmit(onSubmit)}>
  
              <div className = "flex flex-col">
-               <input {...register('name',{required:true})} className = "border-2 border-fb-blue rounded-sm focus-outline-blue text-black p-1 text-sm" 
+               <input {...register('name',{required:true})} className = "border-2 border-fb-blue rounded-md focus-outline-blue text-black p-2 text-sm" 
                      autoComplete = "off" placeholder = "Place's name"/>
                    {errors.name?.type === 'required' && (
                        <span className = "form-err-msg mt-1">You must give a name to the place</span>
@@ -87,14 +87,14 @@ function AddMarkerForm({addLat, addLng, setAddLat, setAddLng, refreshMarkers, se
              </div>
              <div className = "flex flex-col">
                <textarea {...register('description',{required:true})} placeholder = "Place's description" 
-                 className = "border-2 border-fb-blue rounded-sm focus-outline-blue text-black p-1 text-sm" rows = "4" style = {{"maxWidth": "100%", "maxHeight": "110px" }}/>
+                 className = "border-2 border-fb-blue rounded-md focus-outline-blue text-black p-1 text-sm" rows = "4" style = {{"maxWidth": "100%", "maxHeight": "110px" }}/>
                    {errors.description?.type === 'required' && (
                        <span className = "form-err-msg mt-1">You must give a description to the place</span>
                    )}
              </div>
              <div className = "flex flex-col bg-gray-900 py-4 text-sm  p-4">
               <label className = "mb-2">Image URL of the place (optional):</label>
-              <input {...register('imgUrl')} className = "border-2 border-fb-blue rounded-sm focus-outline-blue text-black p-1 text-sm" autoComplete = "off"/>
+              <input {...register('imgUrl')} className = "border-2 border-fb-blue rounded-md focus-outline-blue text-black p-1 text-sm" autoComplete = "off"/>
              </div>
              <button className = "text-green-400 animate-pulse">Add Place</button>
               

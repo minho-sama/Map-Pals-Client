@@ -36,7 +36,7 @@ function CurrentMarker({currentMarker, refreshMarkers, setRefreshMarkers, setCur
     return (
         <>
         <ToastContainer  position = "top-center" autoClose = {3000} hideProgressBar newestOnTop={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
-        <section className={'hidden shadow-inner md:w-1/4 md:h-full md:flex flex-col bg-white text-gray-800 max-h-90 overflow-scroll'}>
+        <section className={'hidden shadow-inner md:w-1/4 md:h-full md:flex flex-col bg-white text-gray-800 max-h-90 overflow-scroll overflow-x-hidden'}>
 
           <img src = {`${currentMarker.imgUrl}`} onError = {addDefaultSrc} alt = "place" className ="shadow-lg mb-3 w-full object-cover rounded-sm"/>
             
@@ -55,7 +55,7 @@ function CurrentMarker({currentMarker, refreshMarkers, setRefreshMarkers, setCur
 
                 {/* ez az egész legyen majd link! */}
                 <div className = "text-xs flex gap-2 justify-end text-gray-600">
-                  <Link to = {`/user/${currentMarker.user._id}`} className = "flex items-center gap-1">
+                  <Link to = {`/profile/${currentMarker.user._id}`} className = "flex items-center gap-1">
                     <h2>{currentMarker.user.username}</h2>
                     <img src={`${currentMarker.user.imgUrl}`} onError = {setDefaultAvatar} alt = "profile-pic" className = "w-6 rounded-full shadow-md"/>
                     <p>|</p>

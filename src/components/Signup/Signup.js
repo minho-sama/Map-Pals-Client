@@ -45,7 +45,7 @@ function Signup() {
     <section className="w-full h-full flex justify-center bg-gray-100">
       <form className="bg-white flex flex-col p-5 self-center w-4/5 md:w-2/5 lg:w-3/10 rounded-lg shadow-md min-h-3/4 items-center justify-center"
         onSubmit={handleSubmit(onSubmit)}>
-        <h1 className = "text-center text-xl mb-2">
+        <h1 className = "text-center text-2xl mb-2 font-semibold">
             Join to MapPals
         </h1>
         <img src = {Earth} alt = "logo earth" className = "w-32 mb-3"/>

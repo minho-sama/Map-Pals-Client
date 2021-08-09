@@ -9,9 +9,9 @@ function ProfileHeader({userFromServer, setDefaultImg}) {
         <figcaption className = "text-2xl font-semibold">
             {userFromServer.username}
         </figcaption>
-        <h1 className = "text-sm md:absolute right-5 bottom-5">
-                ITT LEGYEN AZ FR SEND meg legyen ACCEPT? az lehet bugos lesz lol
-        </h1>
+        {/* <h1 className = "text-sm md:absolute right-5 bottom-5">
+                friend controllers
+        </h1> */}
       </figure> 
     )
 }

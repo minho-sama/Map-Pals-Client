@@ -33,11 +33,14 @@ function ProfileFriends({userFromServer, setDefaultImg, IsModalOpen, setIsModalO
               </Link>
           })
         }
-        <button 
-            onClick = {() => setIsModalOpen(true)}
-            className = "md:absolute bottom-1 right-5 text-xs text-fb-blue-light hover:underline">
-            Show more
+        {
+            userFromServer.friends.length > 5 && 
+            <button 
+                onClick = {() => setIsModalOpen(true)}
+                className = "md:absolute bottom-1 right-5 text-xs text-fb-blue-light hover:underline">
+                Show more
             </button>
+        }
       </section>
     </>
     )
