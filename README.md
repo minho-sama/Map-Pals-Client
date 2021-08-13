@@ -1,6 +1,7 @@
-LIVE PREVIEW: https://mappals.netlify.app/
-API: <br>
-https://github.com/minho-sama/Map-Pals-API <br>
+<h1>MapPals</h1> is a social media site where people can share their favorite spots with their friends. <br/>
+LIVE PREVIEW: https://mappals.netlify.app/ <br/>
+DEMO: 
+API: https://github.com/minho-sama/Map-Pals-API <br>
 
 
 # Getting Started with Create React App
