@@ -11,7 +11,7 @@ function CommentSection({user, token, notifyError, currentMarker}) {
 
     const [showAddComment, setShowAddComment] = React.useState(false)
 
-    const {data:comments, error, refresh:refreshComments, setRefresh:setRefreshComments} = useFetch(`http://localhost:3000/marker/${currentMarker._id}/comments`)
+    const {data:comments, error, refresh:refreshComments, setRefresh:setRefreshComments} = useFetch(`https://mappals.herokuapp.com/marker/${currentMarker._id}/comments`)
 
     const {register, handleSubmit, formState: { errors }, reset} = useForm();
 
@@ -22,7 +22,7 @@ function CommentSection({user, token, notifyError, currentMarker}) {
             content: commentData.content,
         }
 
-        fetch(`http://localhost:3000/marker/${currentMarker._id}/comment/create`, {
+        fetch(`https://mappals.herokuapp.com/marker/${currentMarker._id}/comment/create`, {
             method:'POST',
             headers: new Headers ({
                 'Authorization': `token ${token}`,
@@ -44,7 +44,7 @@ function CommentSection({user, token, notifyError, currentMarker}) {
 
     const deleteComment = (id) => {
 
-        fetch(`http://localhost:3000/marker/comment/${id}/delete`, {
+        fetch(`https://mappals.herokuapp.com/marker/comment/${id}/delete`, {
             method:'DELETE',
             headers: new Headers ({
                 'Authorization': `token ${token}`,
@@ -69,7 +69,7 @@ function CommentSection({user, token, notifyError, currentMarker}) {
         } else{
             comment.likes.push(user._id)
         }
-        fetch(`http://localhost:3000/marker/comment/${comment._id}/like`, {
+        fetch(`https://mappals.herokuapp.com/marker/comment/${comment._id}/like`, {
             method: 'PATCH',
             headers: new Headers ({
                 'Authorization': `token ${token}`,

@@ -18,7 +18,7 @@ function Friends() {
     data: users,
     refresh: refreshUsers,
     setRefresh: setRefreshUsers,
-  } = useFetch('http://localhost:3000/users');
+  } = useFetch('https://mappals.herokuapp.com/users');
 
   const filteredUsers = users?.filter(user => user.username.toLowerCase().includes(searchValue.toLowerCase()));
 

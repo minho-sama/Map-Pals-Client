@@ -40,7 +40,7 @@ function Login() {
   const {addToken} = useContext(TokenContext)
 
   const onSubmit = (formData) => {
-    fetch('http://localhost:3000/login', {
+    fetch('https://mappals.herokuapp.com/login', {
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formData)

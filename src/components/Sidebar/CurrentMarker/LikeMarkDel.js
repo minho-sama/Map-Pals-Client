@@ -6,7 +6,7 @@ import {FaTrashAlt} from 'react-icons/fa'
 function LikeMarkDel({user, token, notifyDeleted, notifyError, currentMarker, refreshMarkers, setRefreshMarkers, setCurrentMarker}) {
 
     const handleDelete = () => {
-        fetch(`http://localhost:3000/marker/${currentMarker._id}/delete`, {
+        fetch(`https://mappals.herokuapp.com/marker/${currentMarker._id}/delete`, {
             method:'DELETE',
             headers: new Headers ({
                 'Authorization': `token ${token}`,
@@ -34,7 +34,7 @@ function LikeMarkDel({user, token, notifyDeleted, notifyError, currentMarker, re
         } else{
             currentMarker.likes.push(user._id)
         }
-        fetch(`http://localhost:3000/marker/${currentMarker._id}/like`, {
+        fetch(`https://mappals.herokuapp.com/marker/${currentMarker._id}/like`, {
             method: 'PATCH',
             headers: new Headers ({
                 'Authorization': `token ${token}`,
@@ -61,7 +61,7 @@ function LikeMarkDel({user, token, notifyDeleted, notifyError, currentMarker, re
         } else{
             user.bookmarks.push(currentMarker._id)
         }
-        fetch(`http://localhost:3000/marker/${user._id}/bookmark`, {
+        fetch(`https://mappals.herokuapp.com/marker/${user._id}/bookmark`, {
             method: 'PATCH',
             headers: new Headers ({
                 'Authorization': `token ${token}`,

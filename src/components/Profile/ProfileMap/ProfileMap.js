@@ -8,7 +8,7 @@ import {FaMapMarked} from 'react-icons/fa'
 function ProfileMap({ user, userFromServer }) {
 
   const { data: userMarkers } = useFetch(
-      `http://localhost:3000/markers/user/${userFromServer._id}`
+      `https://mappals.herokuapp.com/markers/user/${userFromServer._id}`
     );
 
   const [clickedMarker, setClickedMarker] = useState({});
@@ -36,11 +36,11 @@ function ProfileMap({ user, userFromServer }) {
 
   return (
     <section className="mt-2 w-full h-full flex flex-col md:flex-row font-normal">
-      <div className="w-full md:w-1/5 min-h-150 overflow-scroll overflow-x-hidden">
+      <div className="w-full md:w-1/5 min-h-150">
         <h1 className="w-full text-center font-semibold bg-fb-blue text-white rounded-sm mb-2">
           {userFromServer.username}'s Markers
         </h1>
-        <ul className="flex flex-col items-center gap-1">
+        <ul className="flex flex-col items-center gap-1 max-h-180 overflow-scroll overflow-x-hidden">
           {userMarkers && userMarkers.length > 0 ? (
             userMarkers.map((marker) => {
               return (

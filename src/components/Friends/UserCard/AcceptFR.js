@@ -18,7 +18,7 @@ function AcceptFR({
     profile.friends.push(user._id);
     const filteredFriends = [...new Set(profile.friends)]
 
-    fetch(`http://localhost:3000/user/${user._id}/${profile._id}`, {
+    fetch(`https://mappals.herokuapp.com/user/${user._id}/${profile._id}`, {
       method: 'PATCH',
       headers: new Headers({
         Authorization: `token ${token}`,

@@ -15,7 +15,7 @@ function ProfilePage() {
     const {id} = useParams()
 
     const {user} = useContext(UserContext) //only for conditional rendering! 
-    const {data:userFromServer, error:userFSError, refresh:refreshUserFS, setRefresh:setRefreshUserFS} = useFetch(`http://localhost:3000/user/${id}`) //for displaying profile info!
+    const {data:userFromServer, error:userFSError, refresh:refreshUserFS, setRefresh:setRefreshUserFS} = useFetch(`https://mappals.herokuapp.com/user/${id}`) //for displaying profile info!
 
     const [isFriends, setIsFriends] = React.useState(false)
     const [isModalOpen, setIsModalOpen] = React.useState(false)

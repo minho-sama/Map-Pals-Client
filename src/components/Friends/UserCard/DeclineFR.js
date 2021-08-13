@@ -15,7 +15,7 @@ function DeclineFR({
 
     const filteredFriendRequqests = user.friendRequests.filter(requester => requester._id !== String(profile._id))
 
-    fetch(`http://localhost:3000/user/${user._id}/${profile._id}/decline`, {
+    fetch(`https://mappals.herokuapp.com/user/${user._id}/${profile._id}/decline`, {
       method: 'PATCH',
       headers: new Headers({
         Authorization: `token ${token}`,

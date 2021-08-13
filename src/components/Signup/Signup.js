@@ -12,7 +12,7 @@ function Signup() {
     let history = useHistory()
 
     const onSubmit = (formData) => {
-        fetch('http://localhost:3000/signup', {
+        fetch('https://mappals.herokuapp.com/signup', {
             method:'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(formData)

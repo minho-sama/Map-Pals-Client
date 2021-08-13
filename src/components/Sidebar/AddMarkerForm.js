@@ -25,8 +25,8 @@ function AddMarkerForm({addLat, addLng, setAddLat, setAddLng, refreshMarkers, se
         if(formData.imgUrl.length === 0){
             delete newPlace.imgUrl
         }
-
-        fetch('http://localhost:3000/marker/create', {
+        
+        fetch('https://mappals.herokuapp.com/marker/create', {
             method:'POST',
             headers: new Headers ({
                 'Authorization': `token ${token}`,

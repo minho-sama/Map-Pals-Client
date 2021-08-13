@@ -11,7 +11,7 @@ function UpdateForm({setIsUpdateMode, userFromServer, token, user, notifyError, 
             imgUrl:formData.imgUrl
         }
 
-        fetch(`http://localhost:3000/user/${user._id}/info`, {
+        fetch(`https://mappals.herokuapp.com/user/${user._id}/info`, {
             method: 'PATCH',
             headers: new Headers({
               Authorization: `token ${token}`,

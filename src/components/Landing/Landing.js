@@ -10,7 +10,7 @@ const emoji = require('emoji-dictionary');
 function Landing() {
   return (
     <article className="w-full h-max bg-gray-800 text-white tracking-wide flex flex-col flex-grow">
-      <section className="w-full flex flex-col items-center justify-center gap-8 px3 md:px-7 h-3/5">
+      <section className="w-full flex flex-col items-center justify-center gap-8 my-12 md:my-auto md:px-7 h-3/5" style = {{'maxHeight':'280px'}}>
         <h1 className="text-4xl font-bold">
           Welcome to <span className="text-fb-blue-light">MapPals</span> !
         </h1>
@@ -30,8 +30,8 @@ function Landing() {
             </p>
         </div>
       </section>
-      <section className = 'w-full flex flex-col md:flex-row mb-10'>
-         <div className = "w-full md:w-1/2 p-2 pl-7">
+      <section className = 'w-full flex flex-col md:flex-row mb-10 border-t-2 border-white md:border-t-0'>
+         <div className = "w-full md:w-1/2 p-2 pl-7 flex flex-col items-center">
           <h1 className = "text-fb-blue-light font-bold">Mark whatever places you want</h1>
           <ul className = "ml-4 text-sm child list-items-margin border-l-2 border-white p-3">
             <li>...{emoji.getUnicode(':spaghetti:')} a great place to eat out </li>
@@ -44,8 +44,8 @@ function Landing() {
           </ul>
           <h2 className = "ml-5 text-fb-blue-light">really, anything</h2>
          </div>
-         <div className = "w-full md:w-1/2 p-2 md:p-5 flex justify-center">
-            <img src = {Preview} alt = "preview" className = 'w-full md:w-2/3 rounded-sm shadow-lg'/>
+         <div className = "w-full md:w-1/2 p-2 flex justify-center md:justify-start">
+            <img src = {Preview} alt = "preview" className = 'w-full md:w-2/3 rounded-sm shadow-lg border-2 border-white'/>
          </div>
       </section>
       <section className = "w-full py-2 mb-2">

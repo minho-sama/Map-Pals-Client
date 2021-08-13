@@ -14,7 +14,7 @@ function SendFR({
       profile.friendRequests.push(user._id);
     }
 
-    fetch(`http://localhost:3000/user/${profile._id}/sendFR`, {
+    fetch(`https://mappals.herokuapp.com/user/${profile._id}/sendFR`, {
       method: 'PATCH',
       headers: new Headers({
         Authorization: `token ${token}`,

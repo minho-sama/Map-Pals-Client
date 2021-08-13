@@ -35,7 +35,8 @@ module.exports = {
         '300':'300px'
        },
       maxHeight: {
-        '90':'90vh'
+        '90':'90vh',
+        '180':'180px'
       },
       animation:{
         'spin-slow': 'spin 60s linear infinite',

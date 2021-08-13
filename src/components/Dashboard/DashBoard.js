@@ -16,7 +16,7 @@ function Dashboard() {
 
   //fetching markers
   //only FRIENDS' markers (and own markers)
-  const {data:allMarkers, error, refresh:refreshMarkers, setRefresh:setRefreshMarkers} = useFetch(`http://localhost:3000/markers/user/friends/${user._id}`)
+  const {data:allMarkers, error, refresh:refreshMarkers, setRefresh:setRefreshMarkers} = useFetch(`https://mappals.herokuapp.com/markers/user/friends/${user._id}`)
 
   useEffect(() => console.log(allMarkers), [allMarkers])
 

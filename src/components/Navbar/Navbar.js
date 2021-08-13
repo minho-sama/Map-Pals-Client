@@ -30,7 +30,7 @@ function Navbar() {
   }
 
   const verifyToken = () => {
-    fetch('http://localhost:3000/checkToken', {
+    fetch('https://mappals.herokuapp.com/checkToken', {
       method:'POST',
       headers: new Headers ({
         'Authorization': `token ${token}`,
@@ -75,9 +75,9 @@ function Navbar() {
                 <li className = {decideBorder('/friends')}>
                   <Link to="/friends" className = 'relative'>
                     Search Friends
-                    {user.friendRequests.length > 0 && 
+                    {user.friendRequests?.length > 0 && 
                       <span className = "text-xs text-white bg-red-600 rounded-sm px-1 absolute -top-1">
-                        {user?.friendRequests.length}
+                        {user.friendRequests?.length}
                       </span>}
                   </Link>
                 </li>
