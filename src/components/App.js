@@ -29,19 +29,19 @@ function App() {
             <Route exact path = {["/", "/Map-Pals-Client"]}>
               <Landing/>
             </Route>
-            <Route path = "/signup">
+            <Route path = {["/signup", "/Map-Pals-Client/signup"]} >
               <Signup/>
             </Route>
-            <Route path = "/login">
+            <Route path = {["/login", "/Map-Pals-Client/login"]} >
               <Login/>
             </Route>
-            <Route path = "/map">
+            <Route path = {["/map", "/Map-Pals-Client/map"]} >
               <Dashboard/>
             </Route>
-            <Route path = "/friends">
+            <Route path = {["/friends", "/Map-Pals-Client/friends"]} >
               <Friends/>
             </Route>
-            <Route path = "/profile/:id">
+            <Route path = {["/profile/:id", "/Map-Pals-Client/profile/:id"]} >
               <ProfilePage/>
             </Route>
           </Switch>

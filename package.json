@@ -2,7 +2,7 @@
   "name": "map-pals-client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://minho-sama.github.io/Map-Pals-Client/",
+  "homepage": ".",
   "dependencies": {
     "@craco/craco": "^6.2.0",
     "@testing-library/jest-dom": "^5.14.1",
