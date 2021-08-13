@@ -1,4 +1,4 @@
-LIVE PREVIEW: https://minho-sama.github.io/Map-Pals-Client/
+LIVE PREVIEW: https://mappals.netlify.app/
 API: <br>
 https://github.com/minho-sama/Map-Pals-API <br>
 
