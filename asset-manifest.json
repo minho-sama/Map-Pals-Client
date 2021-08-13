@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/Map-Pals-Client/static/css/main.6a103c80.chunk.css",
+    "main.js": "/Map-Pals-Client/static/js/main.f8c5154d.chunk.js",
+    "main.js.map": "/Map-Pals-Client/static/js/main.f8c5154d.chunk.js.map",
+    "runtime-main.js": "/Map-Pals-Client/static/js/runtime-main.b212d4e0.js",
+    "runtime-main.js.map": "/Map-Pals-Client/static/js/runtime-main.b212d4e0.js.map",
+    "static/css/2.f6c7d7d9.chunk.css": "/Map-Pals-Client/static/css/2.f6c7d7d9.chunk.css",
+    "static/js/2.cfdce606.chunk.js": "/Map-Pals-Client/static/js/2.cfdce606.chunk.js",
+    "static/js/2.cfdce606.chunk.js.map": "/Map-Pals-Client/static/js/2.cfdce606.chunk.js.map",
+    "index.html": "/Map-Pals-Client/index.html",
+    "static/css/2.f6c7d7d9.chunk.css.map": "/Map-Pals-Client/static/css/2.f6c7d7d9.chunk.css.map",
+    "static/css/main.6a103c80.chunk.css.map": "/Map-Pals-Client/static/css/main.6a103c80.chunk.css.map",
+    "static/js/2.cfdce606.chunk.js.LICENSE.txt": "/Map-Pals-Client/static/js/2.cfdce606.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/Map-Pals-Client/static/media/blur-map.687037ac.png",
+    "static/media/color-map.73948584.png": "/Map-Pals-Client/static/media/color-map.73948584.png",
+    "static/media/defaultCity.a254e768.jpg": "/Map-Pals-Client/static/media/defaultCity.a254e768.jpg",
+    "static/media/mvc.d71aa51c.gif": "/Map-Pals-Client/static/media/mvc.d71aa51c.gif",
+    "static/media/street-view.60693888.png": "/Map-Pals-Client/static/media/street-view.60693888.png",
+    "static/media/tempMarker.0b3d60a0.png": "/Map-Pals-Client/static/media/tempMarker.0b3d60a0.png",
+    "static/media/worldwide.82e95fdd.svg": "/Map-Pals-Client/static/media/worldwide.82e95fdd.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b212d4e0.js",
+    "static/css/2.f6c7d7d9.chunk.css",
+    "static/js/2.cfdce606.chunk.js",
+    "static/css/main.6a103c80.chunk.css",
+    "static/js/main.f8c5154d.chunk.js"
+  ]
+}
