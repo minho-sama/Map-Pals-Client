@@ -1,7 +1,7 @@
-This project is 80% finished, demo not avalaible yet.
-
+LIVE PREVIEW: https://minho-sama.github.io/Map-Pals-Client/
 API: <br>
-https://github.com/minho-sama/Map-Pals-API
+https://github.com/minho-sama/Map-Pals-API <br>
+
 
 # Getting Started with Create React App
 

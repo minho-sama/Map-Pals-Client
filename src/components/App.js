@@ -26,7 +26,7 @@ function App() {
         <article className="h-screen flex flex-col font-custom">
           <Navbar />
           <Switch>
-            <Route exact path = "/">
+            <Route exact path = {["/", "/Map-Pals-Client"]}>
               <Landing/>
             </Route>
             <Route path = "/signup">
