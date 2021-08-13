@@ -78,7 +78,7 @@ function Login() {
           Login to MapPals <FaMapMarked className = "pb-1 text-fb-blue-light"/>
         </h1>
         <div className = "flex flex-col my-3 w-2/3 items-center">
-            <input className="form-input-field blue-underline-input" defaultValue = {location.state?.username} placeholder = "Username"
+            <input className="form-input-field blue-underline-input" defaultValue = {location.state?.username} placeholder = "Username" autoComplete = "off"
                 {...register('username',{required: true,})}/>
                     {errors.username?.type === 'required' && (
                     <span className="form-err-msg">username is required</span>

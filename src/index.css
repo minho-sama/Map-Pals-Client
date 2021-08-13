@@ -37,6 +37,20 @@
   border-radius: 3px;
 }
 
+.custom-gradient{
+  background: rgb(133,229,249);
+  background: radial-gradient(circle, rgba(133,229,249,1) 0%, rgba(125,166,251,1) 100%);
+
+}
+
+.list-items-margin > li{
+  @apply my-2
+}
+
+.tech-logo-list > li{
+  @apply w-full flex items-center justify-center
+}
+
 .overlay-shadow{
   box-shadow: 0 0 0 1400px rgba(0, 0, 0, 0.5);
 }

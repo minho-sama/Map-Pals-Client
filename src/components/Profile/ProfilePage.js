@@ -71,10 +71,10 @@ function ProfilePage() {
                 </div>
             </div>
            }
-           {
+           { //all friends popup
             isModalOpen && 
               <section 
-                className = "absolute top-1/3 overlay-shadow bg-white max-h-80 overflow-scroll p-4 rounded-sm w-4/5 md:w-1/5" >
+                className = "absolute top-1/4 overlay-shadow bg-white max-h-80 overflow-scroll p-4 rounded-sm w-4/5 md:w-1/5" >
                 {
                  userFromServer.friends.map((friend) => {
                      return <FriendCard key = {friend._id} 

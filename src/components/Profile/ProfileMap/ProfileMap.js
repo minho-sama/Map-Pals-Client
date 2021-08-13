@@ -27,8 +27,8 @@ function ProfileMap({ user, userFromServer }) {
   }, [userMarkers])
 
 
-  const decideBG = (name) => {
-    if (name === clickedMarker.name) return 'marker-card-selected';
+  const decideBG = (id) => {
+    if (id === clickedMarker._id) return 'marker-card-selected';
     else {
       return 'marker-card';
     }
@@ -47,7 +47,7 @@ function ProfileMap({ user, userFromServer }) {
                 <MarkerCard
                   key={marker._id}
                   marker={marker}
-                  styling={decideBG(marker.name)}
+                  styling={decideBG(marker._id)}
                   setClickedMarker={setClickedMarker}
                   setLatitude = {setLatitude}
                   setLongitude = {setLongitude}

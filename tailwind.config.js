@@ -36,7 +36,10 @@ module.exports = {
        },
       maxHeight: {
         '90':'90vh'
-      }
+      },
+      animation:{
+        'spin-slow': 'spin 60s linear infinite',
+      },
     },
   },
   variants: {

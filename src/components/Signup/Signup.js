@@ -48,7 +48,7 @@ function Signup() {
         <h1 className = "text-center text-2xl mb-2 font-semibold">
             Join to MapPals
         </h1>
-        <img src = {Earth} alt = "logo earth" className = "w-32 mb-3"/>
+        <img src = {Earth} alt = "logo earth" className = "w-32 mb-3 animate-spin-slow"/>
         <div className = "flex flex-col my-2 w-2/3 items-center">
             <input  className="form-input-field blue-underline-input" 
                 autoComplete = "off"
