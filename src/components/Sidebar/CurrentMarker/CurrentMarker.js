@@ -53,7 +53,7 @@ function CurrentMarker({currentMarker, refreshMarkers, setRefreshMarkers, setCur
                     setCurrentMarker = {setCurrentMarker}
                   /> 
 
-                {/* ez az egész legyen majd link! */}
+
                 <div className = "text-xs flex gap-2 justify-end text-gray-600">
                   <Link to = {`/profile/${currentMarker.user._id}`} className = "flex items-center gap-1">
                     <h2>{currentMarker.user.username}</h2>
@@ -61,6 +61,9 @@ function CurrentMarker({currentMarker, refreshMarkers, setRefreshMarkers, setCur
                     <p>|</p>
                   </Link>
                   <span className = "flex items-center">{currentMarker.post_date_formatted}</span>
+                </div>
+                <div className = "text-xs mt-2 pl-2 text-fb-blue font-bold">
+                  <p>{currentMarker.description}</p>
                 </div>
 
                 {/*COMMENTS */}
